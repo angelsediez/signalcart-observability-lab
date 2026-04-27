@@ -1,0 +1,2 @@
+NAME                            IMAGE          COMMAND                  SERVICE   CREATED         STATUS         PORTS
+signalcart-compose-test-web-1   nginx:alpine   "/docker-entrypoint.…"   web       4 seconds ago   Up 3 seconds   0.0.0.0:18080->80/tcp, [::]:18080->80/tcp

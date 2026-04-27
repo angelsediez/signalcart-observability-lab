@@ -1,0 +1,92 @@
+== SignalCart Phase 00 Host Baseline ==
+2026-04-27T08:13:27-07:00
+
+## OS
+PRETTY_NAME="Ubuntu 24.04.4 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.4 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
+
+## Kernel
+Linux ubuntu 6.17.0-22-generic #22~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Thu Mar 26 15:25:54 UTC 2 x86_64 x86_64 x86_64 GNU/Linux
+
+## CPU
+CPU(s):                                  32
+On-line CPU(s) list:                     0-31
+Model name:                              AMD Ryzen Threadripper 1950X 16-Core Processor
+Thread(s) per core:                      2
+Core(s) per socket:                      16
+Socket(s):                               1
+CPU(s) scaling MHz:                      62%
+NUMA node0 CPU(s):                       0-31
+
+## Memory
+               total        used        free      shared  buff/cache   available
+Mem:            31Gi       7.1Gi        18Gi       421Mi       6.5Gi        24Gi
+Swap:          8.0Gi          0B       8.0Gi
+
+## Root filesystem
+Filesystem                         Size  Used Avail Use% Mounted on
+/dev/mapper/ubuntu--vg-ubuntu--lv  466G   41G  402G  10% /
+
+## Block devices
+NAME                          SIZE TYPE  FSTYPE      MOUNTPOINTS
+loop0                           4K loop  squashfs    /snap/bare/5
+loop1                          74M loop  squashfs    /snap/core22/2292
+loop2                       184.5M loop  squashfs    /snap/chromium/3416
+loop3                       184.4M loop  squashfs    /snap/chromium/3423
+loop4                        63.8M loop  squashfs    /snap/core20/2769
+loop5                          74M loop  squashfs    /snap/core22/2411
+loop6                        49.1M loop  squashfs    /snap/cups/1183
+loop7                        66.8M loop  squashfs    /snap/core24/1587
+loop8                       273.7M loop  squashfs    /snap/firefox/8107
+loop9                        62.2M loop  squashfs    /snap/ffmpeg-2204/126
+loop10                      274.8M loop  squashfs    /snap/firefox/8191
+loop11                       16.4M loop  squashfs    /snap/firmware-updater/224
+loop12                       16.5M loop  squashfs    /snap/firmware-updater/226
+loop13                      606.1M loop  squashfs    /snap/gnome-46-2404/153
+loop14                       91.7M loop  squashfs    /snap/gtk-common-themes/1535
+loop15                      531.4M loop  squashfs    /snap/gnome-42-2204/247
+loop16                        395M loop  squashfs    /snap/mesa-2404/1165
+loop17                       15.6M loop  squashfs    /snap/snap-store/1338
+loop18                        1.5G loop  squashfs    /snap/kf5-core22/3
+loop19                       15.7M loop  squashfs    /snap/snap-store/1367
+loop20                       49.3M loop  squashfs    /snap/snapd/26865
+loop21                       48.4M loop  squashfs    /snap/snapd/26382
+loop22                        576K loop  squashfs    /snap/snapd-desktop-integration/343
+loop23                        580K loop  squashfs    /snap/snapd-desktop-integration/361
+loop24                       64.7M loop  squashfs    /snap/sublime-text/217
+loop25                      227.6M loop  squashfs    /snap/thunderbird/1057
+loop26                      227.7M loop  squashfs    /snap/thunderbird/1073
+loop27                       55.5M loop  squashfs    /snap/core18/2999
+loop28                      321.1M loop  squashfs    /snap/vlc/3777
+sda                         476.9G disk
+sdb                         931.5G disk
+├─sdb1                          1K part
+└─sdb5                      931.5G part  BitLocker
+sdc                          14.6G disk
+└─sdc1                       14.6G part  ntfs        /media/angelsediez/drivers
+nvme2n1                     476.9G disk
+├─nvme2n1p1                   600M part  vfat
+├─nvme2n1p2                     2G part  ext4
+└─nvme2n1p3                 474.4G part  crypto_LUKS
+nvme0n1                     476.9G disk
+├─nvme0n1p1                   200M part  vfat
+├─nvme0n1p2                    16M part
+├─nvme0n1p3                   476G part  BitLocker
+└─nvme0n1p4                   735M part  ntfs
+nvme1n1                     476.9G disk
+├─nvme1n1p1                     1G part  vfat        /boot/efi
+├─nvme1n1p2                     2G part  ext4        /boot
+└─nvme1n1p3                 473.9G part  crypto_LUKS
+  └─dm_crypt-0              473.9G crypt LVM2_member
+    └─ubuntu--vg-ubuntu--lv 473.9G lvm   ext4        /

@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Local environment and secrets
+.env
+*.env
+!.env.example
+
+# Editor and OS noise
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Runtime logs and temporary files
+*.log
+tmp/
+.cache/
+
+# Docker / local runtime artifacts
+docker-data/
+postgres-data/
+grafana-data/
+prometheus-data/
+alertmanager-data/
+
+# Project source books / private study materials
+# PDFs are local study sources and must not be committed.
+*.pdf
+brain/
+main_sources/
+
+# k6 output
+*.summary.json
+
+# Screenshots are intentionally allowed under assets/screenshots/
+!assets/screenshots/**/*.png
+!assets/screenshots/**/*.jpg
+!assets/screenshots/**/*.jpeg
