@@ -85,3 +85,11 @@ Each incident simulation follows this cycle:
 6. Diagnosis
 7. Recovery
 8. Lesson learned
+## Health and Readiness Endpoints
+
+SignalCart API exposes two health endpoints:
+
+- `/health/live` confirms that the API process is alive.
+- `/health/ready` confirms that the API is ready to serve traffic.
+
+The readiness response currently reports the database dependency as `not_configured`. Database-backed readiness is added when PostgreSQL is connected.

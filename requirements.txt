@@ -1,1 +1,2 @@
-# Runtime dependencies will be added in Phase 02.
+fastapi
+uvicorn[standard]

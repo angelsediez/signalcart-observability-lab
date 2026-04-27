@@ -165,7 +165,8 @@ signalcart-observability-lab/
 ## Current Progress
 
 - Phase 00: Host baseline and tooling preparation — completed
-- Phase 01: Repository structure and documentation baseline — in progress
+- Phase 01: Repository structure and documentation baseline — completed
+- Phase 02: SignalCart API baseline — in progress
 
 ## Source Material Policy
 

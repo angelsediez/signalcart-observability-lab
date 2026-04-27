@@ -1,1 +1,4 @@
-# Development and test dependencies will be added in Phase 02.
+-r requirements.txt
+
+pytest
+httpx
