@@ -1,0 +1,4 @@
+ id |     name      | price | stock
+----+---------------+-------+-------
+  2 | Demo Keyboard | 49.99 |     8
+(1 row)

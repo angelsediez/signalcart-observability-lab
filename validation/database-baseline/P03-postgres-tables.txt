@@ -1,0 +1,8 @@
+               List of relations
+ Schema |      Name       | Type  |   Owner
+--------+-----------------+-------+------------
+ public | alembic_version | table | signalcart
+ public | order_items     | table | signalcart
+ public | orders          | table | signalcart
+ public | products        | table | signalcart
+(4 rows)

@@ -1,0 +1,15 @@
+                                    Table "public.products"
+ Column |          Type          | Collation | Nullable |               Default
+--------+------------------------+-----------+----------+--------------------------------------
+ id     | integer                |           | not null | nextval('products_id_seq'::regclass)
+ name   | character varying(120) |           | not null |
+ price  | numeric(10,2)          |           | not null |
+ stock  | integer                |           | not null |
+Indexes:
+    "products_pkey" PRIMARY KEY, btree (id)
+    "ix_products_id" btree (id)
+Check constraints:
+    "ck_products_price_positive" CHECK (price > 0::numeric)
+    "ck_products_stock_non_negative" CHECK (stock >= 0)
+Referenced by:
+    TABLE "order_items" CONSTRAINT "order_items_product_id_fkey" FOREIGN KEY (product_id) REFERENCES products(id)

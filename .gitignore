@@ -41,9 +41,6 @@ alertmanager-data/
 
 # Project source books / private study materials
 # PDFs are local study sources and must not be committed.
-*.pdf
-brain/
-main_sources/
 
 # k6 output
 *.summary.json

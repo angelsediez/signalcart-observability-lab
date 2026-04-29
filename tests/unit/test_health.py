@@ -6,14 +6,14 @@ def test_liveness_endpoint_returns_ok(client):
     assert response.json()["service"] == "SignalCart API"
 
 
-def test_readiness_endpoint_returns_ready_without_database_dependency_yet(client):
+def test_readiness_endpoint_returns_ready_when_database_is_available(client):
     response = client.get("/health/ready")
 
     assert response.status_code == 200
     body = response.json()
 
     assert body["status"] == "ready"
-    assert body["dependencies"]["database"] == "not_configured"
+    assert body["dependencies"]["database"] == "ok"
 
 
 def test_version_endpoint_returns_service_metadata(client):

@@ -1,18 +1,69 @@
 from fastapi import APIRouter, Depends, HTTPException, status
+from sqlalchemy import select
+from sqlalchemy.orm import Session, selectinload
 
-from app.dependencies.store import get_store
+from app.dependencies.database import get_db
+from app.models import Order, Product
 from app.schemas.catalog import CheckoutRequest, CheckoutResponse
-from app.store import InMemoryStore
 
 router = APIRouter(tags=["checkout"])
 
 
 @router.post("/checkout", response_model=CheckoutResponse)
-async def checkout(
+def checkout(
     request: CheckoutRequest,
-    store: InMemoryStore = Depends(get_store),
+    db: Session = Depends(get_db),
 ) -> CheckoutResponse:
-    try:
-        return store.checkout_order(request.order_id)
-    except ValueError as exc:
-        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc)) from exc
+    order = db.scalar(
+        select(Order)
+        .options(selectinload(Order.items))
+        .where(Order.id == request.order_id)
+    )
+
+    if order is None:
+        raise HTTPException(
+            status_code=status.HTTP_400_BAD_REQUEST,
+            detail=f"order_id {request.order_id} does not exist",
+        )
+
+    if order.status == "checked_out":
+        return CheckoutResponse(
+            order_id=order.id,
+            status=order.status,
+            total=float(order.total),
+            message="order was already checked out",
+        )
+
+    product_ids = [item.product_id for item in order.items]
+
+    products = db.scalars(
+        select(Product)
+        .where(Product.id.in_(product_ids))
+        .with_for_update()
+    ).all()
+
+    products_by_id = {product.id: product for product in products}
+
+    for item in order.items:
+        product = products_by_id[item.product_id]
+
+        if product.stock < item.quantity:
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail=f"product_id {item.product_id} does not have enough stock",
+            )
+
+    for item in order.items:
+        product = products_by_id[item.product_id]
+        product.stock -= item.quantity
+
+    order.status = "checked_out"
+
+    db.commit()
+
+    return CheckoutResponse(
+        order_id=order.id,
+        status=order.status,
+        total=float(order.total),
+        message="checkout completed",
+    )

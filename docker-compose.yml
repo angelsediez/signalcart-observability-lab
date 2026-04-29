@@ -1,0 +1,26 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: signalcart-postgres
+    environment:
+      POSTGRES_DB: signalcart
+      POSTGRES_USER: signalcart
+      POSTGRES_PASSWORD: signalcart-local-password
+    ports:
+      - "5432:5432"
+    volumes:
+      - signalcart-postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U signalcart -d signalcart"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks:
+      - signalcart-net
+
+volumes:
+  signalcart-postgres-data:
+
+networks:
+  signalcart-net:
+    driver: bridge

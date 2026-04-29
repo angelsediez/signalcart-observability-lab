@@ -1,0 +1,2 @@
+NAME                  IMAGE                COMMAND                  SERVICE    CREATED         STATUS                   PORTS
+signalcart-postgres   postgres:17-alpine   "docker-entrypoint.s…"   postgres   7 seconds ago   Up 6 seconds (healthy)   0.0.0.0:5432->5432/tcp, [::]:5432->5432/tcp

@@ -54,3 +54,25 @@ def test_simulation_endpoint_can_enable_and_recover_with_valid_token(monkeypatch
     assert recover_response.json()["simulation_state"]["db_readiness_failure"] is False
 
     get_settings.cache_clear()
+
+
+def test_db_readiness_failure_simulation_changes_ready_endpoint(monkeypatch):
+    monkeypatch.setenv("SIMULATION_MODE", "true")
+    monkeypatch.setenv("SIMULATION_TOKEN", "secret-token")
+    get_settings.cache_clear()
+
+    app = create_app()
+
+    with TestClient(app) as client:
+        simulation_response = client.post(
+            "/lab/simulations/db-readiness-failure",
+            headers={"X-Simulation-Token": "secret-token"},
+        )
+
+        readiness_response = client.get("/health/ready")
+
+    assert simulation_response.status_code == 200
+    assert readiness_response.status_code == 503
+    assert readiness_response.json()["detail"]["dependencies"]["database"] == "simulated_failure"
+
+    get_settings.cache_clear()

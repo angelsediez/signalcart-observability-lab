@@ -41,6 +41,13 @@ def test_product_order_and_checkout_flow(client):
     assert checkout["total"] == 99.98
     assert checkout["message"] == "checkout completed"
 
+    products_response = client.get("/products")
+
+    assert products_response.status_code == 200
+    products = products_response.json()
+
+    assert products[0]["stock"] == 8
+
 
 def test_order_creation_rejects_missing_product(client):
     response = client.post(

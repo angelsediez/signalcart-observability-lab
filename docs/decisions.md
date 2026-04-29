@@ -75,3 +75,37 @@ SIMULATION_TOKEN
 **Reason:**
 
 Alert validation is based on visible evidence from Prometheus, Alertmanager, Grafana, command outputs, screenshots, and recovery checks.
+
+## Decision 008: Use PostgreSQL as the service datastore
+
+Status: accepted
+
+Reason:
+
+PostgreSQL gives the lab a realistic relational datastore for persistence, readiness checks, migrations, and database monitoring.
+
+## Decision 009: Use SQLAlchemy ORM for application persistence
+
+Status: accepted
+
+Reason:
+
+SQLAlchemy ORM provides a clear Python data access layer with models, sessions, transactions, and testable database interactions.
+
+## Decision 010: Use Alembic for database migrations
+
+Status: accepted
+
+Reason:
+
+Alembic makes schema changes explicit, versioned, reviewable, and repeatable.
+
+## Decision 011: Keep liveness independent from database readiness
+
+Status: accepted
+
+Reason:
+
+`/health/live` confirms that the API process is alive.
+
+`/health/ready` confirms that the API can use required dependencies such as PostgreSQL.

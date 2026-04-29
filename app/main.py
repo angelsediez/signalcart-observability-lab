@@ -2,7 +2,6 @@ from fastapi import FastAPI
 
 from app.core.config import get_settings
 from app.routers import checkout, health, orders, products, simulations, version
-from app.store import InMemoryStore
 
 
 def create_app() -> FastAPI:
@@ -14,7 +13,6 @@ def create_app() -> FastAPI:
         description="SignalCart API for the SignalCart Observability Lab.",
     )
 
-    app.state.store = InMemoryStore()
     app.state.simulation_state = {
         "latency_spike": False,
         "error_spike": False,

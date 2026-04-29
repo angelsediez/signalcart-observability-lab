@@ -1,0 +1,2 @@
+  Generating /home/angelsediez/projects/signalcart-observability-
+  lab/migrations/versions/c71649c33a92_create_products_and_orders_tables.py ...  done

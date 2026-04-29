@@ -24,9 +24,7 @@ The lab demonstrates how to instrument, monitor, visualize, alert on, troublesho
 
 The application under observation is **SignalCart API**, a small checkout/cart API with products, orders, checkout, health checks, metrics, and controlled incident simulation endpoints.
 
-The application is intentionally simple so the main focus stays on observability, SRE operations, incident response, and troubleshooting.
-
-### Planned application endpoints
+### Application endpoints
 
 - `GET /health/live`
 - `GET /health/ready`
@@ -166,19 +164,9 @@ signalcart-observability-lab/
 
 - Phase 00: Host baseline and tooling preparation — completed
 - Phase 01: Repository structure and documentation baseline — completed
-- Phase 02: SignalCart API baseline — in progress
+- Phase 02: SignalCart API baseline — completed
+- Phase 03: PostgreSQL, SQLAlchemy, and Alembic — completed
 
-## Source Material Policy
-
-Study PDFs and books are local learning sources only.
-
-They are not copied into this repository.
-
-The repository intentionally ignores:
-
-- `*.pdf`
-- `brain/`
-- `main_sources/`
 
 ## License
 

@@ -93,3 +93,21 @@ SignalCart API exposes two health endpoints:
 - `/health/ready` confirms that the API is ready to serve traffic.
 
 The readiness response currently reports the database dependency as `not_configured`. Database-backed readiness is added when PostgreSQL is connected.
+
+## Database-Backed Readiness
+
+The readiness endpoint validates PostgreSQL with a lightweight database query.
+
+Expected healthy response:
+
+```json
+{
+  "status": "ready",
+  "service": "SignalCart API",
+  "dependencies": {
+    "database": "ok"
+  }
+}
+```
+
+The liveness endpoint remains independent from PostgreSQL. This distinction helps separate process health from dependency readiness.

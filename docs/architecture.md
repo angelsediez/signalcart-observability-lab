@@ -74,3 +74,16 @@ Alert validation layer used during incident simulations.
 ## k6
 
 Load testing tool used to generate traffic and validate behavior under controlled experiments.
+## Database Persistence
+
+SignalCart API stores products, orders, and order items in PostgreSQL.
+
+SQLAlchemy provides the application data access layer.
+
+Alembic manages database schema migrations.
+
+The database schema is versioned through migration files under:
+
+```text
+migrations/
+```
