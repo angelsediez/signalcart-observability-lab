@@ -4,6 +4,7 @@ from sqlalchemy.orm import Session, selectinload
 
 from app.dependencies.database import get_db
 from app.models import Order, Product
+from app.observability.metrics import CHECKOUT_FAILURES_TOTAL, CHECKOUTS_COMPLETED_TOTAL
 from app.schemas.catalog import CheckoutRequest, CheckoutResponse
 
 router = APIRouter(tags=["checkout"])
@@ -21,6 +22,7 @@ def checkout(
     )
 
     if order is None:
+        CHECKOUT_FAILURES_TOTAL.inc()
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
             detail=f"order_id {request.order_id} does not exist",
@@ -48,6 +50,7 @@ def checkout(
         product = products_by_id[item.product_id]
 
         if product.stock < item.quantity:
+            CHECKOUT_FAILURES_TOTAL.inc()
             raise HTTPException(
                 status_code=status.HTTP_400_BAD_REQUEST,
                 detail=f"product_id {item.product_id} does not have enough stock",
@@ -60,6 +63,8 @@ def checkout(
     order.status = "checked_out"
 
     db.commit()
+
+    CHECKOUTS_COMPLETED_TOTAL.inc()
 
     return CheckoutResponse(
         order_id=order.id,

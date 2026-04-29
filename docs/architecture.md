@@ -87,3 +87,24 @@ The database schema is versioned through migration files under:
 ```text
 migrations/
 ```
+
+## Application Metrics Endpoint
+
+SignalCart API exposes application metrics at:
+
+```text
+GET /metrics
+```
+
+The endpoint returns Prometheus-compatible text format.
+
+The endpoint is designed to be scraped by Prometheus.
+
+The API currently exposes:
+
+- HTTP request counters
+- HTTP request duration histogram
+- in-progress request gauge
+- product, order, and checkout counters
+- database readiness gauge
+- simulation state gauges

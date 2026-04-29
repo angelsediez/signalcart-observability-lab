@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, Header, HTTPException, Request, status
 
 from app.core.config import Settings, get_settings
+from app.observability.metrics import set_simulation_state
 
 router = APIRouter(prefix="/lab/simulations", tags=["lab"])
 
@@ -31,6 +32,8 @@ async def latency_spike(
     simulation_state: dict[str, bool] = Depends(get_simulation_state),
 ) -> dict[str, object]:
     simulation_state["latency_spike"] = True
+    set_simulation_state(simulation_state)
+
     return {"status": "enabled", "simulation_state": simulation_state}
 
 
@@ -39,6 +42,8 @@ async def error_spike(
     simulation_state: dict[str, bool] = Depends(get_simulation_state),
 ) -> dict[str, object]:
     simulation_state["error_spike"] = True
+    set_simulation_state(simulation_state)
+
     return {"status": "enabled", "simulation_state": simulation_state}
 
 
@@ -47,6 +52,8 @@ async def db_readiness_failure(
     simulation_state: dict[str, bool] = Depends(get_simulation_state),
 ) -> dict[str, object]:
     simulation_state["db_readiness_failure"] = True
+    set_simulation_state(simulation_state)
+
     return {"status": "enabled", "simulation_state": simulation_state}
 
 
@@ -56,5 +63,7 @@ async def recover(
 ) -> dict[str, object]:
     for key in simulation_state:
         simulation_state[key] = False
+
+    set_simulation_state(simulation_state)
 
     return {"status": "recovered", "simulation_state": simulation_state}

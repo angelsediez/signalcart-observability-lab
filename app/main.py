@@ -1,11 +1,15 @@
 from fastapi import FastAPI
 
 from app.core.config import get_settings
-from app.routers import checkout, health, orders, products, simulations, version
+from app.routers import checkout, health, metrics, orders, products, simulations, version
+from app.observability.metrics import initialize_metrics, set_simulation_state
+from app.observability.middleware import MetricsMiddleware
 
 
 def create_app() -> FastAPI:
     settings = get_settings()
+
+    initialize_metrics()
 
     app = FastAPI(
         title=settings.app_name,
@@ -19,7 +23,12 @@ def create_app() -> FastAPI:
         "db_readiness_failure": False,
     }
 
+    set_simulation_state(app.state.simulation_state)
+
+    app.add_middleware(MetricsMiddleware)
+
     app.include_router(health.router)
+    app.include_router(metrics.router)
     app.include_router(version.router)
     app.include_router(products.router)
     app.include_router(orders.router)

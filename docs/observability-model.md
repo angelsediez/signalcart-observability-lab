@@ -111,3 +111,87 @@ Expected healthy response:
 ```
 
 The liveness endpoint remains independent from PostgreSQL. This distinction helps separate process health from dependency readiness.
+
+## Application Metrics
+
+SignalCart API exposes Prometheus-compatible application metrics at:
+
+```text
+GET /metrics
+```
+
+These metrics describe API traffic, latency, errors, domain activity, database readiness, and lab simulation state.
+
+## HTTP RED Metrics
+
+The API exposes RED-style HTTP metrics:
+
+- Rate through `signalcart_http_requests_total`
+- Errors through status-code labels on `signalcart_http_requests_total`
+- Duration through `signalcart_http_request_duration_seconds`
+
+The request metrics use low-cardinality labels:
+
+- `method`
+- `route`
+- `status_code`
+
+The `route` label uses route templates instead of raw URLs.
+
+## Domain Metrics
+
+SignalCart exposes domain counters for key API actions:
+
+- `signalcart_products_created_total`
+- `signalcart_orders_created_total`
+- `signalcart_checkouts_completed_total`
+- `signalcart_checkout_failures_total`
+
+These counters make checkout behavior visible during load tests and incident simulations.
+
+## Database Readiness Metric
+
+Database readiness is exposed as:
+
+```text
+signalcart_database_ready
+```
+
+Expected values:
+
+- `1` means database readiness is OK.
+- `0` means database readiness failed or the database readiness failure simulation is active.
+
+## Simulation Metrics
+
+Simulation state is exposed as:
+
+```text
+signalcart_simulation_active{simulation="latency_spike"}
+signalcart_simulation_active{simulation="error_spike"}
+signalcart_simulation_active{simulation="db_readiness_failure"}
+```
+
+A value of `1` means the simulation is active. A value of `0` means it is inactive.
+
+## Label Cardinality
+
+Metric labels must avoid high cardinality.
+
+Good labels:
+
+- HTTP method
+- route template
+- status code
+- known simulation name
+
+Avoid labels such as:
+
+- raw full URL
+- query string
+- product ID
+- order ID
+- user-provided text
+- request body values
+
+Low-cardinality labels keep metrics useful, queryable, and safe to aggregate.

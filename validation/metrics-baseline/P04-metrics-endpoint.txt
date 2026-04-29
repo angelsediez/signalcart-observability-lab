@@ -1,0 +1,98 @@
+# HELP python_gc_objects_collected_total Objects collected during gc
+# TYPE python_gc_objects_collected_total counter
+python_gc_objects_collected_total{generation="0"} 468.0
+python_gc_objects_collected_total{generation="1"} 51.0
+python_gc_objects_collected_total{generation="2"} 0.0
+# HELP python_gc_objects_uncollectable_total Uncollectable objects found during GC
+# TYPE python_gc_objects_uncollectable_total counter
+python_gc_objects_uncollectable_total{generation="0"} 0.0
+python_gc_objects_uncollectable_total{generation="1"} 0.0
+python_gc_objects_uncollectable_total{generation="2"} 0.0
+# HELP python_gc_collections_total Number of times this generation was collected
+# TYPE python_gc_collections_total counter
+python_gc_collections_total{generation="0"} 206.0
+python_gc_collections_total{generation="1"} 18.0
+python_gc_collections_total{generation="2"} 1.0
+# HELP python_info Python platform information
+# TYPE python_info gauge
+python_info{implementation="CPython",major="3",minor="12",patchlevel="3",version="3.12.3"} 1.0
+# HELP process_virtual_memory_bytes Virtual memory size in bytes.
+# TYPE process_virtual_memory_bytes gauge
+process_virtual_memory_bytes 3.09792768e+08
+# HELP process_resident_memory_bytes Resident memory size in bytes.
+# TYPE process_resident_memory_bytes gauge
+process_resident_memory_bytes 8.1227776e+07
+# HELP process_start_time_seconds Start time of the process since unix epoch in seconds.
+# TYPE process_start_time_seconds gauge
+process_start_time_seconds 1.77748162148e+09
+# HELP process_cpu_seconds_total Total user and system CPU time spent in seconds.
+# TYPE process_cpu_seconds_total counter
+process_cpu_seconds_total 0.75
+# HELP process_open_fds Number of open file descriptors.
+# TYPE process_open_fds gauge
+process_open_fds 18.0
+# HELP process_max_fds Maximum number of open file descriptors.
+# TYPE process_max_fds gauge
+process_max_fds 1024.0
+# HELP signalcart_http_requests_total Total HTTP requests handled by SignalCart API.
+# TYPE signalcart_http_requests_total counter
+signalcart_http_requests_total{method="GET",route="unmatched",status_code="404"} 2.0
+# HELP signalcart_http_requests_created Total HTTP requests handled by SignalCart API.
+# TYPE signalcart_http_requests_created gauge
+signalcart_http_requests_created{method="GET",route="unmatched",status_code="404"} 1.7774816431980371e+09
+# HELP signalcart_http_request_duration_seconds HTTP request duration in seconds.
+# TYPE signalcart_http_request_duration_seconds histogram
+signalcart_http_request_duration_seconds_bucket{le="0.005",method="GET",route="unmatched",status_code="404"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="0.01",method="GET",route="unmatched",status_code="404"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="0.025",method="GET",route="unmatched",status_code="404"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="0.05",method="GET",route="unmatched",status_code="404"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="0.075",method="GET",route="unmatched",status_code="404"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="0.1",method="GET",route="unmatched",status_code="404"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="0.25",method="GET",route="unmatched",status_code="404"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="0.5",method="GET",route="unmatched",status_code="404"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="0.75",method="GET",route="unmatched",status_code="404"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="1.0",method="GET",route="unmatched",status_code="404"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="2.5",method="GET",route="unmatched",status_code="404"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="5.0",method="GET",route="unmatched",status_code="404"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="10.0",method="GET",route="unmatched",status_code="404"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="+Inf",method="GET",route="unmatched",status_code="404"} 2.0
+signalcart_http_request_duration_seconds_count{method="GET",route="unmatched",status_code="404"} 2.0
+signalcart_http_request_duration_seconds_sum{method="GET",route="unmatched",status_code="404"} 0.0006197019999945041
+# HELP signalcart_http_request_duration_seconds_created HTTP request duration in seconds.
+# TYPE signalcart_http_request_duration_seconds_created gauge
+signalcart_http_request_duration_seconds_created{method="GET",route="unmatched",status_code="404"} 1.7774816431980739e+09
+# HELP signalcart_http_requests_in_progress Current HTTP requests being handled by SignalCart API.
+# TYPE signalcart_http_requests_in_progress gauge
+signalcart_http_requests_in_progress 0.0
+# HELP signalcart_products_created_total Total products created through SignalCart API.
+# TYPE signalcart_products_created_total counter
+signalcart_products_created_total 0.0
+# HELP signalcart_products_created_created Total products created through SignalCart API.
+# TYPE signalcart_products_created_created gauge
+signalcart_products_created_created 1.7774816226063182e+09
+# HELP signalcart_orders_created_total Total orders created through SignalCart API.
+# TYPE signalcart_orders_created_total counter
+signalcart_orders_created_total 0.0
+# HELP signalcart_orders_created_created Total orders created through SignalCart API.
+# TYPE signalcart_orders_created_created gauge
+signalcart_orders_created_created 1.7774816226063302e+09
+# HELP signalcart_checkouts_completed_total Total successful checkouts completed through SignalCart API.
+# TYPE signalcart_checkouts_completed_total counter
+signalcart_checkouts_completed_total 0.0
+# HELP signalcart_checkouts_completed_created Total successful checkouts completed through SignalCart API.
+# TYPE signalcart_checkouts_completed_created gauge
+signalcart_checkouts_completed_created 1.7774816226063402e+09
+# HELP signalcart_checkout_failures_total Total checkout failures through SignalCart API.
+# TYPE signalcart_checkout_failures_total counter
+signalcart_checkout_failures_total 0.0
+# HELP signalcart_checkout_failures_created Total checkout failures through SignalCart API.
+# TYPE signalcart_checkout_failures_created gauge
+signalcart_checkout_failures_created 1.7774816226063497e+09
+# HELP signalcart_database_ready Database readiness status for SignalCart API. 1 means ready, 0 means not ready.
+# TYPE signalcart_database_ready gauge
+signalcart_database_ready 0.0
+# HELP signalcart_simulation_active Simulation flag state. 1 means active, 0 means inactive.
+# TYPE signalcart_simulation_active gauge
+signalcart_simulation_active{simulation="latency_spike"} 0.0
+signalcart_simulation_active{simulation="error_spike"} 0.0
+signalcart_simulation_active{simulation="db_readiness_failure"} 0.0

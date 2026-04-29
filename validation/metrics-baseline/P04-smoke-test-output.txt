@@ -1,0 +1,55 @@
+== SignalCart API smoke test ==
+BASE_URL=http://127.0.0.1:8000
+
+## Liveness
+{
+  "status": "ok",
+  "service": "SignalCart API"
+}
+
+## Readiness
+{
+  "status": "ready",
+  "service": "SignalCart API",
+  "dependencies": {
+    "database": "ok"
+  }
+}
+
+## Version
+{
+  "service": "SignalCart API",
+  "version": "0.1.0",
+  "environment": "local"
+}
+
+## Create product
+{
+  "name": "Demo Keyboard",
+  "price": 49.99,
+  "stock": 10,
+  "id": 12
+}
+
+## Create order
+{
+  "id": 12,
+  "items": [
+    {
+      "product_id": 12,
+      "quantity": 2
+    }
+  ],
+  "status": "created",
+  "total": 99.98
+}
+
+## Checkout
+{
+  "order_id": 12,
+  "status": "checked_out",
+  "total": 99.98,
+  "message": "checkout completed"
+}
+
+Smoke test completed successfully.

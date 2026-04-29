@@ -166,6 +166,7 @@ signalcart-observability-lab/
 - Phase 01: Repository structure and documentation baseline — completed
 - Phase 02: SignalCart API baseline — completed
 - Phase 03: PostgreSQL, SQLAlchemy, and Alembic — completed
+- Phase 04: Metrics instrumentation — completed
 
 
 ## License

@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 
 from app.core.config import Settings, get_settings
 from app.dependencies.database import get_db
+from app.observability.metrics import set_database_ready
 from app.schemas.health import HealthResponse, ReadinessResponse
 
 router = APIRouter(prefix="/health", tags=["health"])
@@ -22,6 +23,8 @@ def ready(
     db: Session = Depends(get_db),
 ) -> ReadinessResponse:
     if request.app.state.simulation_state.get("db_readiness_failure", False):
+        set_database_ready(False)
+
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             detail={
@@ -36,6 +39,8 @@ def ready(
     try:
         db.execute(text("SELECT 1"))
     except SQLAlchemyError as exc:
+        set_database_ready(False)
+
         raise HTTPException(
             status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
             detail={
@@ -46,6 +51,8 @@ def ready(
                 },
             },
         ) from exc
+
+    set_database_ready(True)
 
     return ReadinessResponse(
         status="ready",

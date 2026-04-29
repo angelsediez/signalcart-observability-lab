@@ -7,6 +7,7 @@ from sqlalchemy.orm import Session, selectinload
 from app.core.money import to_money
 from app.dependencies.database import get_db
 from app.models import Order, OrderItem as OrderItemModel, Product
+from app.observability.metrics import ORDERS_CREATED_TOTAL
 from app.schemas.catalog import OrderCreate, OrderItem, OrderRead
 
 router = APIRouter(prefix="/orders", tags=["orders"])
@@ -91,5 +92,7 @@ def create_order(
 
     db.add(created)
     db.commit()
+
+    ORDERS_CREATED_TOTAL.inc()
 
     return order_to_read(created)

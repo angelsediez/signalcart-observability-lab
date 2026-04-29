@@ -109,3 +109,29 @@ Reason:
 `/health/live` confirms that the API process is alive.
 
 `/health/ready` confirms that the API can use required dependencies such as PostgreSQL.
+
+## Decision 012: Expose Prometheus metrics from the application
+
+Status: accepted
+
+Reason:
+
+SignalCart API exposes application metrics directly through `/metrics` so API behavior can be validated before adding the metrics collection layer.
+
+## Decision 013: Use low-cardinality metric labels
+
+Status: accepted
+
+Reason:
+
+HTTP metrics use method, route template, and status code labels.
+
+The API does not use raw URLs, query strings, product IDs, order IDs, or user-provided values as labels.
+
+## Decision 014: Use RED-style HTTP metrics for API behavior
+
+Status: accepted
+
+Reason:
+
+Request rate, errors, and duration provide a clear operational view of API behavior during normal traffic, load testing, and incident simulations.

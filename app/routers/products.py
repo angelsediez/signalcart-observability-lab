@@ -5,6 +5,7 @@ from sqlalchemy.orm import Session
 from app.core.money import to_money
 from app.dependencies.database import get_db
 from app.models import Product
+from app.observability.metrics import PRODUCTS_CREATED_TOTAL
 from app.schemas.catalog import ProductCreate, ProductRead
 
 router = APIRouter(prefix="/products", tags=["products"])
@@ -30,5 +31,7 @@ def create_product(
     db.add(created)
     db.commit()
     db.refresh(created)
+
+    PRODUCTS_CREATED_TOTAL.inc()
 
     return ProductRead.model_validate(created)

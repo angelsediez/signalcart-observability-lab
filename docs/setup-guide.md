@@ -86,3 +86,37 @@ Troubleshooting notes:
 ```text
 troubleshooting/
 ```
+
+## Metrics Validation
+
+Run the API locally:
+
+```bash
+python3 -m uvicorn app.main:app --host 127.0.0.1 --port 8000
+```
+
+Check the metrics endpoint:
+
+```bash
+curl -s http://127.0.0.1:8000/metrics | grep '^signalcart_'
+```
+
+Validate database readiness metric:
+
+```bash
+curl -s http://127.0.0.1:8000/health/ready | jq .
+curl -s http://127.0.0.1:8000/metrics | grep '^signalcart_database_ready'
+```
+
+Generate API traffic:
+
+```bash
+bash scripts/smoke-test.sh
+```
+
+Check domain counters:
+
+```bash
+curl -s http://127.0.0.1:8000/metrics \
+  | grep -E 'signalcart_(products_created_total|orders_created_total|checkouts_completed_total|checkout_failures_total)'
+```
