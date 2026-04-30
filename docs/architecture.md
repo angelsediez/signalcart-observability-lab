@@ -136,3 +136,55 @@ SignalCart API exposes two health endpoints:
 - `/health/ready` confirms that required dependencies are usable.
 
 The readiness endpoint validates PostgreSQL with a lightweight database query.
+
+## Metrics Collection Layer
+
+Prometheus collects metrics from SignalCart API and supporting exporters.
+
+```mermaid
+flowchart LR
+    API[SignalCart API /metrics] --> Prometheus[Prometheus]
+    Node[Node Exporter] --> Prometheus
+    Cadvisor[cAdvisor] --> Prometheus
+    PG[PostgreSQL Exporter] --> Prometheus
+    Blackbox[Blackbox Exporter] --> Prometheus
+    Blackbox --> Nginx[Nginx /health/ready]
+```
+
+Prometheus is available locally at:
+
+```text
+http://127.0.0.1:9090
+```
+
+The main target validation page is:
+
+```text
+http://127.0.0.1:9090/targets
+```
+
+## Metrics Collection Jobs
+
+Prometheus collects from these jobs:
+
+- `prometheus`
+- `signalcart-api`
+- `node-exporter`
+- `cadvisor`
+- `postgres-exporter`
+- `blackbox-nginx`
+
+The `blackbox-nginx` job probes the Nginx-exposed readiness endpoint from inside the Compose network.
+
+## Runtime Ports
+
+| Component | Host Port | Container Port | Purpose |
+|---|---:|---:|---|
+| Nginx | 8080 | 80 | Public HTTP entrypoint |
+| Prometheus | 9090 | 9090 | Metrics query and target validation |
+| PostgreSQL | 5432 | 5432 | Local database access |
+| SignalCart API | internal | 8000 | FastAPI service |
+| Node Exporter | internal | 9100 | Host metrics |
+| cAdvisor | internal | 8080 | Container metrics |
+| PostgreSQL Exporter | internal | 9187 | Database metrics |
+| Blackbox Exporter | internal | 9115 | Synthetic probe metrics |

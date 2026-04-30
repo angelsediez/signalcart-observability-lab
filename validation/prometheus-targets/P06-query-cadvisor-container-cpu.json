@@ -1,0 +1,44 @@
+[
+  {
+    "metric": {
+      "__name__": "container_cpu_usage_seconds_total",
+      "cpu": "total",
+      "id": "/",
+      "instance": "cadvisor:8080",
+      "job": "cadvisor",
+      "service": "cadvisor"
+    },
+    "value": [
+      1777575759.499,
+      "7681.468"
+    ]
+  },
+  {
+    "metric": {
+      "__name__": "container_cpu_usage_seconds_total",
+      "cpu": "total",
+      "id": "/init.scope",
+      "instance": "cadvisor:8080",
+      "job": "cadvisor",
+      "service": "cadvisor"
+    },
+    "value": [
+      1777575759.499,
+      "5.814599"
+    ]
+  },
+  {
+    "metric": {
+      "__name__": "container_cpu_usage_seconds_total",
+      "cpu": "total",
+      "id": "/system.slice",
+      "instance": "cadvisor:8080",
+      "job": "cadvisor",
+      "service": "cadvisor"
+    },
+    "value": [
+      1777575759.499,
+      "86.309182"
+    ]
+  }
+]

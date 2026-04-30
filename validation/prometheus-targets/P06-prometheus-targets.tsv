@@ -1,0 +1,9 @@
+== Prometheus target health ==
+PROMETHEUS_URL=http://127.0.0.1:9090
+
+blackbox-nginx	http://nginx/health/ready	up
+cadvisor	cadvisor:8080	up
+node-exporter	node-exporter:9100	up
+postgres-exporter	postgres-exporter:9187	up
+prometheus	localhost:9090	up
+signalcart-api	api:8000	up

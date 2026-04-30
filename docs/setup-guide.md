@@ -248,3 +248,63 @@ Troubleshooting notes:
 ```text
 troubleshooting/
 ```
+
+
+## Prometheus and Exporters
+
+Start the metrics collection layer:
+
+```bash
+docker compose up -d \
+  postgres \
+  api \
+  nginx \
+  node-exporter \
+  cadvisor \
+  postgres-exporter \
+  blackbox-exporter \
+  prometheus
+```
+
+Validate Prometheus configuration:
+
+```bash
+docker compose run --rm --no-deps prometheus \
+  promtool check config /etc/prometheus/prometheus.yml
+```
+
+Open Prometheus:
+
+```text
+http://127.0.0.1:9090
+```
+
+Open target status:
+
+```text
+http://127.0.0.1:9090/targets
+```
+
+Check targets from the command line:
+
+```bash
+bash scripts/check-prometheus-targets.sh
+```
+
+
+Query metrics in the Prometheus expression browser:
+
+```text
+http://127.0.0.1:9090/graph
+```
+
+Useful PromQL expressions:
+
+```promql
+up
+signalcart_database_ready
+pg_up
+probe_success{job="blackbox-nginx"}
+node_cpu_seconds_total
+container_cpu_usage_seconds_total
+```

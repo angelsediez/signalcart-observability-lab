@@ -1,0 +1,4 @@
+ Container signalcart-observability-lab-prometheus-run-f37bba59e337 Creating
+ Container signalcart-observability-lab-prometheus-run-f37bba59e337 Created
+Checking /etc/prometheus/prometheus.yml
+ SUCCESS: /etc/prometheus/prometheus.yml is valid prometheus config file syntax

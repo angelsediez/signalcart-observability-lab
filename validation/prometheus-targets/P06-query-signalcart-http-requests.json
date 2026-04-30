@@ -1,0 +1,92 @@
+[
+  {
+    "metric": {
+      "__name__": "signalcart_http_requests_total",
+      "instance": "api:8000",
+      "job": "signalcart-api",
+      "method": "GET",
+      "route": "/health/live",
+      "service": "signalcart-api",
+      "status_code": "200"
+    },
+    "value": [
+      1777575759.512,
+      "6"
+    ]
+  },
+  {
+    "metric": {
+      "__name__": "signalcart_http_requests_total",
+      "instance": "api:8000",
+      "job": "signalcart-api",
+      "method": "GET",
+      "route": "/health/ready",
+      "service": "signalcart-api",
+      "status_code": "200"
+    },
+    "value": [
+      1777575759.512,
+      "3"
+    ]
+  },
+  {
+    "metric": {
+      "__name__": "signalcart_http_requests_total",
+      "instance": "api:8000",
+      "job": "signalcart-api",
+      "method": "GET",
+      "route": "/version",
+      "service": "signalcart-api",
+      "status_code": "200"
+    },
+    "value": [
+      1777575759.512,
+      "1"
+    ]
+  },
+  {
+    "metric": {
+      "__name__": "signalcart_http_requests_total",
+      "instance": "api:8000",
+      "job": "signalcart-api",
+      "method": "POST",
+      "route": "/products",
+      "service": "signalcart-api",
+      "status_code": "201"
+    },
+    "value": [
+      1777575759.512,
+      "1"
+    ]
+  },
+  {
+    "metric": {
+      "__name__": "signalcart_http_requests_total",
+      "instance": "api:8000",
+      "job": "signalcart-api",
+      "method": "POST",
+      "route": "/orders",
+      "service": "signalcart-api",
+      "status_code": "201"
+    },
+    "value": [
+      1777575759.512,
+      "1"
+    ]
+  },
+  {
+    "metric": {
+      "__name__": "signalcart_http_requests_total",
+      "instance": "api:8000",
+      "job": "signalcart-api",
+      "method": "POST",
+      "route": "/checkout",
+      "service": "signalcart-api",
+      "status_code": "200"
+    },
+    "value": [
+      1777575759.512,
+      "1"
+    ]
+  }
+]

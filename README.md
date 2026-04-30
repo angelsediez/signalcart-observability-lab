@@ -2,13 +2,19 @@
 
 SignalCart Observability Lab is a local-first observability homelab for practicing practical SRE operations with a small FastAPI checkout/cart service.
 
-The lab demonstrates how to instrument, monitor, visualize, validate alerts, troubleshoot, and recover a service using a metrics-driven observability workflow.
+The lab demonstrates how to instrument, monitor, validate metrics collection, troubleshoot, and recover a service using a metrics-driven observability workflow.
 
 ## What This Lab Demonstrates
 
 - API health and readiness checks
 - Application metrics
 - Prometheus-compatible metrics exposition
+- Prometheus metrics collection
+- Prometheus target validation
+- Host metrics with Node Exporter
+- Container metrics with cAdvisor
+- PostgreSQL metrics with PostgreSQL Exporter
+- Synthetic endpoint checks with Blackbox Exporter
 - Docker Compose runtime validation
 - Nginx reverse proxy validation
 - PostgreSQL-backed persistence
@@ -69,7 +75,12 @@ SIMULATION_TOKEN
 - Nginx
 - Docker Compose
 - Prometheus-compatible application metrics
+- Prometheus
 - prometheus-client
+- Node Exporter
+- cAdvisor
+- PostgreSQL Exporter
+- Blackbox Exporter
 - k6
 - Bash scripts
 - runbooks
@@ -189,8 +200,32 @@ signalcart-observability-lab/
 - Phase 03: PostgreSQL, SQLAlchemy, and Alembic — completed
 - Phase 04: Metrics instrumentation — completed
 - Phase 05: Docker Compose runtime with Nginx — completed
+- Phase 06: Prometheus and exporters — completed
 
 
 ## License
 
 MIT License.
+
+## Prometheus Jobs
+
+Prometheus collects from these jobs:
+
+- `prometheus`
+- `signalcart-api`
+- `node-exporter`
+- `cadvisor`
+- `postgres-exporter`
+- `blackbox-nginx`
+
+Prometheus is available locally at:
+
+```text
+http://127.0.0.1:9090
+```
+
+Prometheus target health is available at:
+
+```text
+http://127.0.0.1:9090/targets
+```

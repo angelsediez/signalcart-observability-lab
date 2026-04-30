@@ -163,3 +163,27 @@ Reason:
 The API image creates and uses a dedicated `signalcart` user.
 
 This reduces unnecessary privilege inside the application container.
+
+## Decision 018: Use Prometheus for metrics collection
+
+Status: accepted
+
+Reason:
+
+Prometheus collects application and exporter metrics through scrape jobs and provides a queryable time-series layer for operational validation.
+
+## Decision 019: Use exporters for host, container, database, and synthetic signals
+
+Status: accepted
+
+Reason:
+
+Node Exporter, cAdvisor, PostgreSQL Exporter, and Blackbox Exporter expose operational signals that the application does not provide by itself.
+
+## Decision 020: Validate targets before building dashboards and alerts
+
+Status: accepted
+
+Reason:
+
+Target validation confirms that metrics are being collected correctly before visualization and alerting are configured.

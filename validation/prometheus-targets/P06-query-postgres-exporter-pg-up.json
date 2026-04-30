@@ -1,0 +1,20 @@
+{
+  "status": "success",
+  "data": {
+    "resultType": "vector",
+    "result": [
+      {
+        "metric": {
+          "__name__": "pg_up",
+          "instance": "postgres-exporter:9187",
+          "job": "postgres-exporter",
+          "service": "postgres-exporter"
+        },
+        "value": [
+          1777575754.073,
+          "1"
+        ]
+      }
+    ]
+  }
+}

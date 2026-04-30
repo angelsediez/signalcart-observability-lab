@@ -1,0 +1,79 @@
+{
+  "status": "success",
+  "data": {
+    "resultType": "vector",
+    "result": [
+      {
+        "metric": {
+          "__name__": "up",
+          "instance": "http://nginx/health/ready",
+          "job": "blackbox-nginx",
+          "service": "nginx-synthetic-check"
+        },
+        "value": [
+          1777575754.038,
+          "1"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "up",
+          "instance": "node-exporter:9100",
+          "job": "node-exporter",
+          "service": "node-exporter"
+        },
+        "value": [
+          1777575754.038,
+          "1"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "up",
+          "instance": "postgres-exporter:9187",
+          "job": "postgres-exporter",
+          "service": "postgres-exporter"
+        },
+        "value": [
+          1777575754.038,
+          "1"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "up",
+          "instance": "cadvisor:8080",
+          "job": "cadvisor",
+          "service": "cadvisor"
+        },
+        "value": [
+          1777575754.038,
+          "1"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "up",
+          "instance": "localhost:9090",
+          "job": "prometheus"
+        },
+        "value": [
+          1777575754.038,
+          "1"
+        ]
+      },
+      {
+        "metric": {
+          "__name__": "up",
+          "instance": "api:8000",
+          "job": "signalcart-api",
+          "service": "signalcart-api"
+        },
+        "value": [
+          1777575754.038,
+          "1"
+        ]
+      }
+    ]
+  }
+}

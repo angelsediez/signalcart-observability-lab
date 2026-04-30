@@ -1,0 +1,44 @@
+[
+  {
+    "metric": {
+      "__name__": "node_cpu_seconds_total",
+      "cpu": "0",
+      "instance": "node-exporter:9100",
+      "job": "node-exporter",
+      "mode": "idle",
+      "service": "node-exporter"
+    },
+    "value": [
+      1777575759.484,
+      "5997.06"
+    ]
+  },
+  {
+    "metric": {
+      "__name__": "node_cpu_seconds_total",
+      "cpu": "0",
+      "instance": "node-exporter:9100",
+      "job": "node-exporter",
+      "mode": "iowait",
+      "service": "node-exporter"
+    },
+    "value": [
+      1777575759.484,
+      "2.25"
+    ]
+  },
+  {
+    "metric": {
+      "__name__": "node_cpu_seconds_total",
+      "cpu": "0",
+      "instance": "node-exporter:9100",
+      "job": "node-exporter",
+      "mode": "irq",
+      "service": "node-exporter"
+    },
+    "value": [
+      1777575759.484,
+      "0"
+    ]
+  }
+]

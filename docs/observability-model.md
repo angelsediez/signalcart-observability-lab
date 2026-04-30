@@ -195,3 +195,66 @@ Each incident simulation follows this cycle:
 6. Diagnosis
 7. Recovery
 8. Lesson learned
+
+## Prometheus Metrics Collection
+
+Prometheus collects metrics from the application and exporters.
+
+Collection jobs:
+
+- `signalcart-api` collects application metrics from `/metrics`
+- `node-exporter` collects host metrics
+- `cadvisor` collects container metrics
+- `postgres-exporter` collects PostgreSQL metrics
+- `blackbox-nginx` probes the Nginx readiness endpoint
+- `prometheus` collects Prometheus self-metrics
+
+## Target Health
+
+Prometheus target health is validated through:
+
+```text
+http://127.0.0.1:9090/targets
+```
+
+The `up` metric is used to verify whether Prometheus can scrape each target.
+
+Examples:
+
+```promql
+up
+up{job="signalcart-api"}
+up{job="node-exporter"}
+up{job="cadvisor"}
+up{job="postgres-exporter"}
+```
+
+## Synthetic Probe Metrics
+
+Blackbox Exporter provides synthetic check metrics for the Nginx entrypoint.
+
+Important metrics:
+
+```promql
+probe_success{job="blackbox-nginx"}
+probe_duration_seconds{job="blackbox-nginx"}
+probe_http_status_code{job="blackbox-nginx"}
+```
+
+Expected healthy result:
+
+```text
+probe_success = 1
+```
+
+## Exporter Metrics
+
+Representative exporter metrics:
+
+```promql
+node_cpu_seconds_total
+container_cpu_usage_seconds_total
+pg_up
+```
+
+These metrics help connect API behavior with host, container, and database signals.

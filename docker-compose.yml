@@ -6,10 +6,10 @@ services:
       POSTGRES_DB: signalcart
       POSTGRES_USER: signalcart
       POSTGRES_PASSWORD: signalcart-local-password
-    volumes:
-      - signalcart-postgres-data:/var/lib/postgresql/data
     ports:
       - "127.0.0.1:5432:5432"
+    volumes:
+      - signalcart-postgres-data:/var/lib/postgresql/data
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U signalcart -d signalcart"]
       interval: 5s
@@ -62,8 +62,91 @@ services:
     networks:
       - signalcart-net
 
+  prometheus:
+    image: prom/prometheus:v3.5.2
+    container_name: signalcart-prometheus
+    command:
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.enable-lifecycle"
+    ports:
+      - "127.0.0.1:9090:9090"
+    volumes:
+      - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - signalcart-prometheus-data:/prometheus
+    depends_on:
+      api:
+        condition: service_healthy
+      nginx:
+        condition: service_healthy
+      postgres-exporter:
+        condition: service_started
+      node-exporter:
+        condition: service_started
+      cadvisor:
+        condition: service_started
+      blackbox-exporter:
+        condition: service_started
+    networks:
+      - signalcart-net
+
+  node-exporter:
+    image: prom/node-exporter:v1.11.0
+    container_name: signalcart-node-exporter
+    command:
+      - "--path.rootfs=/host"
+    volumes:
+      - /:/host:ro,rslave
+    expose:
+      - "9100"
+    networks:
+      - signalcart-net
+
+  cadvisor:
+    image: gcr.io/cadvisor/cadvisor:v0.52.1
+    container_name: signalcart-cadvisor
+    privileged: true
+    devices:
+      - /dev/kmsg:/dev/kmsg
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+      - /dev/disk:/dev/disk:ro
+    expose:
+      - "8080"
+    networks:
+      - signalcart-net
+
+  postgres-exporter:
+    image: prometheuscommunity/postgres-exporter:v0.18.0
+    container_name: signalcart-postgres-exporter
+    environment:
+      DATA_SOURCE_NAME: postgresql://signalcart:signalcart-local-password@postgres:5432/signalcart?sslmode=disable
+    depends_on:
+      postgres:
+        condition: service_healthy
+    expose:
+      - "9187"
+    networks:
+      - signalcart-net
+
+  blackbox-exporter:
+    image: prom/blackbox-exporter:v0.27.0
+    container_name: signalcart-blackbox-exporter
+    command:
+      - "--config.file=/etc/blackbox_exporter/config.yml"
+    volumes:
+      - ./docker/blackbox/blackbox.yml:/etc/blackbox_exporter/config.yml:ro
+    expose:
+      - "9115"
+    networks:
+      - signalcart-net
+
 volumes:
   signalcart-postgres-data:
+  signalcart-prometheus-data:
 
 networks:
   signalcart-net:
