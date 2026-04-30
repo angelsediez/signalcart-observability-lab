@@ -9,10 +9,9 @@ The architecture is intentionally focused:
 - one API
 - one database
 - one reverse proxy
-- one metrics backend
-- one visualization layer
-- one alert validation layer
-- one synthetic monitoring path
+- one metrics endpoint
+- one container runtime
+- one synthetic-ready HTTP entrypoint
 
 This keeps the lab practical, reproducible, and centered on observability.
 
@@ -29,13 +28,10 @@ flowchart LR
 
 ```mermaid
 flowchart LR
-    API[SignalCart API /metrics] --> Prometheus[Prometheus]
-    PGExporter[PostgreSQL Exporter] --> Prometheus
-    NodeExporter[Node Exporter] --> Prometheus
-    CAdvisor[cAdvisor] --> Prometheus
-    Blackbox[Blackbox Exporter] --> Prometheus
-    Prometheus --> Grafana[Grafana]
-    Prometheus --> Alertmanager[Alertmanager]
+    API[SignalCart API /metrics] --> Metrics[Prometheus-compatible metrics endpoint]
+    Nginx[Nginx entrypoint] --> Synthetic[Synthetic monitoring ready path]
+    API --> Evidence[Validation evidence]
+    Runtime[Docker Compose runtime] --> Evidence
 ```
 
 ## Main Components
@@ -52,28 +48,26 @@ Relational database used by the API for products, orders, and checkout-related d
 
 Reverse proxy that exposes the API through a single HTTP entrypoint.
 
-### Prometheus
+### Docker Compose
 
-Metrics backend that scrapes the API and exporters.
+Local runtime used to run PostgreSQL, SignalCart API, and Nginx together.
 
-### Grafana
+### SQLAlchemy
 
-Dashboard layer for API, infrastructure, PostgreSQL, and synthetic monitoring views.
+Python data access layer used by the API.
 
-### Alertmanager
+### Alembic
 
-Alert validation layer used during incident simulations.
+Database migration tool used to version schema changes.
 
-## Exporters
+### pytest
 
-- Node Exporter for host metrics
-- cAdvisor for container metrics
-- PostgreSQL Exporter for database metrics
-- Blackbox Exporter for synthetic endpoint checks
+Test runner used to validate application behavior and metrics.
 
-## k6
+### k6
 
 Load testing tool used to generate traffic and validate behavior under controlled experiments.
+
 ## Database Persistence
 
 SignalCart API stores products, orders, and order items in PostgreSQL.
@@ -98,9 +92,7 @@ GET /metrics
 
 The endpoint returns Prometheus-compatible text format.
 
-The endpoint is designed to be scraped by Prometheus.
-
-The API currently exposes:
+The API exposes:
 
 - HTTP request counters
 - HTTP request duration histogram
@@ -108,3 +100,39 @@ The API currently exposes:
 - product, order, and checkout counters
 - database readiness gauge
 - simulation state gauges
+
+## Container Runtime
+
+SignalCart runs as a Docker Compose application with three runtime services:
+
+- `nginx` exposes the HTTP entrypoint on `http://127.0.0.1:8080`
+- `api` runs SignalCart API with FastAPI and Uvicorn
+- `postgres` stores products, orders, and order items
+
+Nginx forwards incoming HTTP requests to the API container over the internal Compose network.
+
+```mermaid
+flowchart LR
+    Client[Client / curl / k6] --> Nginx[Nginx container]
+    Nginx --> API[SignalCart API container]
+    API --> Postgres[(PostgreSQL container)]
+```
+
+The API exposes `/metrics`; the endpoint is reachable through Nginx and is ready for the observability workflow.
+
+## Runtime Ports
+
+| Component | Host Port | Container Port | Purpose |
+|---|---:|---:|---|
+| Nginx | 8080 | 80 | Public HTTP entrypoint |
+| SignalCart API | internal | 8000 | FastAPI service |
+| PostgreSQL | internal | 5432 | Relational database |
+
+## Health Model
+
+SignalCart API exposes two health endpoints:
+
+- `/health/live` confirms that the API process is alive.
+- `/health/ready` confirms that required dependencies are usable.
+
+The readiness endpoint validates PostgreSQL with a lightweight database query.

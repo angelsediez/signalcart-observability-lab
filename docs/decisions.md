@@ -4,17 +4,17 @@ This file records important technical decisions for SignalCart Observability Lab
 
 ## Decision 001: Use SignalCart Observability Lab as the project name
 
-**Status:** accepted
+Status: accepted
 
-**Reason:**
+Reason:
 
 The name communicates the purpose of the project: a small cart/checkout service used to generate observable signals.
 
 ## Decision 002: Keep the lab local-first
 
-**Status:** accepted
+Status: accepted
 
-**Reason:**
+Reason:
 
 The lab is designed to run on a local Ubuntu homelab machine with Docker Compose.
 
@@ -22,9 +22,9 @@ This keeps the environment reproducible, inspectable, and easy to reset.
 
 ## Decision 003: Use k6 as the primary load testing tool
 
-**Status:** accepted
+Status: accepted
 
-**Reason:**
+Reason:
 
 k6 supports scripted, repeatable load scenarios and controlled incident experiments.
 
@@ -32,9 +32,9 @@ This makes it suitable for validating metrics, dashboards, alert behavior, and r
 
 ## Decision 004: Use Blackbox Exporter for synthetic monitoring
 
-**Status:** accepted
+Status: accepted
 
-**Reason:**
+Reason:
 
 Blackbox Exporter validates the endpoint exposed through Nginx from an external perspective.
 
@@ -42,17 +42,17 @@ This complements internal application metrics from the API and exporters.
 
 ## Decision 005: Treat Nginx as the user-facing entrypoint
 
-**Status:** accepted
+Status: accepted
 
-**Reason:**
+Reason:
 
 Nginx gives the lab a realistic HTTP entrypoint for synthetic checks, reverse proxy behavior, and endpoint availability validation.
 
 ## Decision 006: Disable simulation endpoints by default
 
-**Status:** accepted
+Status: accepted
 
-**Reason:**
+Reason:
 
 Incident simulation endpoints should only be available during intentional lab exercises.
 
@@ -70,9 +70,9 @@ SIMULATION_TOKEN
 
 ## Decision 007: Validate alerts with local operational evidence
 
-**Status:** accepted
+Status: accepted
 
-**Reason:**
+Reason:
 
 Alert validation is based on visible evidence from Prometheus, Alertmanager, Grafana, command outputs, screenshots, and recovery checks.
 
@@ -135,3 +135,31 @@ Status: accepted
 Reason:
 
 Request rate, errors, and duration provide a clear operational view of API behavior during normal traffic, load testing, and incident simulations.
+
+## Decision 015: Run SignalCart with Docker Compose
+
+Status: accepted
+
+Reason:
+
+Docker Compose provides a reproducible local runtime for the API, PostgreSQL, and Nginx.
+
+The Compose file documents services, networks, volumes, health checks, and runtime configuration.
+
+## Decision 016: Use Nginx as the HTTP entrypoint
+
+Status: accepted
+
+Reason:
+
+Nginx gives the lab a realistic HTTP entrypoint for API traffic, health checks, metrics access, and synthetic monitoring.
+
+## Decision 017: Run the API container as a non-root user
+
+Status: accepted
+
+Reason:
+
+The API image creates and uses a dedicated `signalcart` user.
+
+This reduces unnecessary privilege inside the application container.

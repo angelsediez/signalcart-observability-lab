@@ -1,0 +1,193 @@
+# HELP python_gc_objects_collected_total Objects collected during gc
+# TYPE python_gc_objects_collected_total counter
+python_gc_objects_collected_total{generation="0"} 1201.0
+python_gc_objects_collected_total{generation="1"} 16.0
+python_gc_objects_collected_total{generation="2"} 0.0
+# HELP python_gc_objects_uncollectable_total Uncollectable objects found during GC
+# TYPE python_gc_objects_uncollectable_total counter
+python_gc_objects_uncollectable_total{generation="0"} 0.0
+python_gc_objects_uncollectable_total{generation="1"} 0.0
+python_gc_objects_uncollectable_total{generation="2"} 0.0
+# HELP python_gc_collections_total Number of times this generation was collected
+# TYPE python_gc_collections_total counter
+python_gc_collections_total{generation="0"} 206.0
+python_gc_collections_total{generation="1"} 18.0
+python_gc_collections_total{generation="2"} 1.0
+# HELP python_info Python platform information
+# TYPE python_info gauge
+python_info{implementation="CPython",major="3",minor="12",patchlevel="13",version="3.12.13"} 1.0
+# HELP process_virtual_memory_bytes Virtual memory size in bytes.
+# TYPE process_virtual_memory_bytes gauge
+process_virtual_memory_bytes 3.0138368e+08
+# HELP process_resident_memory_bytes Resident memory size in bytes.
+# TYPE process_resident_memory_bytes gauge
+process_resident_memory_bytes 8.9788416e+07
+# HELP process_start_time_seconds Start time of the process since unix epoch in seconds.
+# TYPE process_start_time_seconds gauge
+process_start_time_seconds 1.77748313689e+09
+# HELP process_cpu_seconds_total Total user and system CPU time spent in seconds.
+# TYPE process_cpu_seconds_total counter
+process_cpu_seconds_total 1.5
+# HELP process_open_fds Number of open file descriptors.
+# TYPE process_open_fds gauge
+process_open_fds 16.0
+# HELP process_max_fds Maximum number of open file descriptors.
+# TYPE process_max_fds gauge
+process_max_fds 1024.0
+# HELP signalcart_http_requests_total Total HTTP requests handled by SignalCart API.
+# TYPE signalcart_http_requests_total counter
+signalcart_http_requests_total{method="GET",route="/health/live",status_code="200"} 15.0
+signalcart_http_requests_total{method="GET",route="/health/ready",status_code="200"} 4.0
+signalcart_http_requests_total{method="GET",route="/version",status_code="200"} 2.0
+signalcart_http_requests_total{method="POST",route="/products",status_code="201"} 1.0
+signalcart_http_requests_total{method="POST",route="/orders",status_code="201"} 1.0
+signalcart_http_requests_total{method="POST",route="/checkout",status_code="200"} 1.0
+# HELP signalcart_http_requests_created Total HTTP requests handled by SignalCart API.
+# TYPE signalcart_http_requests_created gauge
+signalcart_http_requests_created{method="GET",route="/health/live",status_code="200"} 1.7774831477909148e+09
+signalcart_http_requests_created{method="GET",route="/health/ready",status_code="200"} 1.7774831662944252e+09
+signalcart_http_requests_created{method="GET",route="/version",status_code="200"} 1.7774831838804321e+09
+signalcart_http_requests_created{method="POST",route="/products",status_code="201"} 1.777483207851143e+09
+signalcart_http_requests_created{method="POST",route="/orders",status_code="201"} 1.7774832078885176e+09
+signalcart_http_requests_created{method="POST",route="/checkout",status_code="200"} 1.7774832079350986e+09
+# HELP signalcart_http_request_duration_seconds HTTP request duration in seconds.
+# TYPE signalcart_http_request_duration_seconds histogram
+signalcart_http_request_duration_seconds_bucket{le="0.005",method="GET",route="/health/live",status_code="200"} 15.0
+signalcart_http_request_duration_seconds_bucket{le="0.01",method="GET",route="/health/live",status_code="200"} 15.0
+signalcart_http_request_duration_seconds_bucket{le="0.025",method="GET",route="/health/live",status_code="200"} 15.0
+signalcart_http_request_duration_seconds_bucket{le="0.05",method="GET",route="/health/live",status_code="200"} 15.0
+signalcart_http_request_duration_seconds_bucket{le="0.075",method="GET",route="/health/live",status_code="200"} 15.0
+signalcart_http_request_duration_seconds_bucket{le="0.1",method="GET",route="/health/live",status_code="200"} 15.0
+signalcart_http_request_duration_seconds_bucket{le="0.25",method="GET",route="/health/live",status_code="200"} 15.0
+signalcart_http_request_duration_seconds_bucket{le="0.5",method="GET",route="/health/live",status_code="200"} 15.0
+signalcart_http_request_duration_seconds_bucket{le="0.75",method="GET",route="/health/live",status_code="200"} 15.0
+signalcart_http_request_duration_seconds_bucket{le="1.0",method="GET",route="/health/live",status_code="200"} 15.0
+signalcart_http_request_duration_seconds_bucket{le="2.5",method="GET",route="/health/live",status_code="200"} 15.0
+signalcart_http_request_duration_seconds_bucket{le="5.0",method="GET",route="/health/live",status_code="200"} 15.0
+signalcart_http_request_duration_seconds_bucket{le="10.0",method="GET",route="/health/live",status_code="200"} 15.0
+signalcart_http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/health/live",status_code="200"} 15.0
+signalcart_http_request_duration_seconds_count{method="GET",route="/health/live",status_code="200"} 15.0
+signalcart_http_request_duration_seconds_sum{method="GET",route="/health/live",status_code="200"} 0.015501099998800782
+signalcart_http_request_duration_seconds_bucket{le="0.005",method="GET",route="/health/ready",status_code="200"} 3.0
+signalcart_http_request_duration_seconds_bucket{le="0.01",method="GET",route="/health/ready",status_code="200"} 3.0
+signalcart_http_request_duration_seconds_bucket{le="0.025",method="GET",route="/health/ready",status_code="200"} 4.0
+signalcart_http_request_duration_seconds_bucket{le="0.05",method="GET",route="/health/ready",status_code="200"} 4.0
+signalcart_http_request_duration_seconds_bucket{le="0.075",method="GET",route="/health/ready",status_code="200"} 4.0
+signalcart_http_request_duration_seconds_bucket{le="0.1",method="GET",route="/health/ready",status_code="200"} 4.0
+signalcart_http_request_duration_seconds_bucket{le="0.25",method="GET",route="/health/ready",status_code="200"} 4.0
+signalcart_http_request_duration_seconds_bucket{le="0.5",method="GET",route="/health/ready",status_code="200"} 4.0
+signalcart_http_request_duration_seconds_bucket{le="0.75",method="GET",route="/health/ready",status_code="200"} 4.0
+signalcart_http_request_duration_seconds_bucket{le="1.0",method="GET",route="/health/ready",status_code="200"} 4.0
+signalcart_http_request_duration_seconds_bucket{le="2.5",method="GET",route="/health/ready",status_code="200"} 4.0
+signalcart_http_request_duration_seconds_bucket{le="5.0",method="GET",route="/health/ready",status_code="200"} 4.0
+signalcart_http_request_duration_seconds_bucket{le="10.0",method="GET",route="/health/ready",status_code="200"} 4.0
+signalcart_http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/health/ready",status_code="200"} 4.0
+signalcart_http_request_duration_seconds_count{method="GET",route="/health/ready",status_code="200"} 4.0
+signalcart_http_request_duration_seconds_sum{method="GET",route="/health/ready",status_code="200"} 0.027488225000070088
+signalcart_http_request_duration_seconds_bucket{le="0.005",method="GET",route="/version",status_code="200"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="0.01",method="GET",route="/version",status_code="200"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="0.025",method="GET",route="/version",status_code="200"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="0.05",method="GET",route="/version",status_code="200"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="0.075",method="GET",route="/version",status_code="200"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="0.1",method="GET",route="/version",status_code="200"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="0.25",method="GET",route="/version",status_code="200"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="0.5",method="GET",route="/version",status_code="200"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="0.75",method="GET",route="/version",status_code="200"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="1.0",method="GET",route="/version",status_code="200"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="2.5",method="GET",route="/version",status_code="200"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="5.0",method="GET",route="/version",status_code="200"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="10.0",method="GET",route="/version",status_code="200"} 2.0
+signalcart_http_request_duration_seconds_bucket{le="+Inf",method="GET",route="/version",status_code="200"} 2.0
+signalcart_http_request_duration_seconds_count{method="GET",route="/version",status_code="200"} 2.0
+signalcart_http_request_duration_seconds_sum{method="GET",route="/version",status_code="200"} 0.0018308870003238553
+signalcart_http_request_duration_seconds_bucket{le="0.005",method="POST",route="/products",status_code="201"} 0.0
+signalcart_http_request_duration_seconds_bucket{le="0.01",method="POST",route="/products",status_code="201"} 0.0
+signalcart_http_request_duration_seconds_bucket{le="0.025",method="POST",route="/products",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="0.05",method="POST",route="/products",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="0.075",method="POST",route="/products",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="0.1",method="POST",route="/products",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="0.25",method="POST",route="/products",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="0.5",method="POST",route="/products",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="0.75",method="POST",route="/products",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="1.0",method="POST",route="/products",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="2.5",method="POST",route="/products",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="5.0",method="POST",route="/products",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="10.0",method="POST",route="/products",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/products",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_count{method="POST",route="/products",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_sum{method="POST",route="/products",status_code="201"} 0.02330998700017517
+signalcart_http_request_duration_seconds_bucket{le="0.005",method="POST",route="/orders",status_code="201"} 0.0
+signalcart_http_request_duration_seconds_bucket{le="0.01",method="POST",route="/orders",status_code="201"} 0.0
+signalcart_http_request_duration_seconds_bucket{le="0.025",method="POST",route="/orders",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="0.05",method="POST",route="/orders",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="0.075",method="POST",route="/orders",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="0.1",method="POST",route="/orders",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="0.25",method="POST",route="/orders",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="0.5",method="POST",route="/orders",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="0.75",method="POST",route="/orders",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="1.0",method="POST",route="/orders",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="2.5",method="POST",route="/orders",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="5.0",method="POST",route="/orders",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="10.0",method="POST",route="/orders",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/orders",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_count{method="POST",route="/orders",status_code="201"} 1.0
+signalcart_http_request_duration_seconds_sum{method="POST",route="/orders",status_code="201"} 0.012035563999688748
+signalcart_http_request_duration_seconds_bucket{le="0.005",method="POST",route="/checkout",status_code="200"} 0.0
+signalcart_http_request_duration_seconds_bucket{le="0.01",method="POST",route="/checkout",status_code="200"} 0.0
+signalcart_http_request_duration_seconds_bucket{le="0.025",method="POST",route="/checkout",status_code="200"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="0.05",method="POST",route="/checkout",status_code="200"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="0.075",method="POST",route="/checkout",status_code="200"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="0.1",method="POST",route="/checkout",status_code="200"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="0.25",method="POST",route="/checkout",status_code="200"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="0.5",method="POST",route="/checkout",status_code="200"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="0.75",method="POST",route="/checkout",status_code="200"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="1.0",method="POST",route="/checkout",status_code="200"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="2.5",method="POST",route="/checkout",status_code="200"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="5.0",method="POST",route="/checkout",status_code="200"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="10.0",method="POST",route="/checkout",status_code="200"} 1.0
+signalcart_http_request_duration_seconds_bucket{le="+Inf",method="POST",route="/checkout",status_code="200"} 1.0
+signalcart_http_request_duration_seconds_count{method="POST",route="/checkout",status_code="200"} 1.0
+signalcart_http_request_duration_seconds_sum{method="POST",route="/checkout",status_code="200"} 0.018415506000110327
+# HELP signalcart_http_request_duration_seconds_created HTTP request duration in seconds.
+# TYPE signalcart_http_request_duration_seconds_created gauge
+signalcart_http_request_duration_seconds_created{method="GET",route="/health/live",status_code="200"} 1.7774831477909439e+09
+signalcart_http_request_duration_seconds_created{method="GET",route="/health/ready",status_code="200"} 1.7774831662944748e+09
+signalcart_http_request_duration_seconds_created{method="GET",route="/version",status_code="200"} 1.7774831838804734e+09
+signalcart_http_request_duration_seconds_created{method="POST",route="/products",status_code="201"} 1.7774832078511896e+09
+signalcart_http_request_duration_seconds_created{method="POST",route="/orders",status_code="201"} 1.7774832078885489e+09
+signalcart_http_request_duration_seconds_created{method="POST",route="/checkout",status_code="200"} 1.7774832079351397e+09
+# HELP signalcart_http_requests_in_progress Current HTTP requests being handled by SignalCart API.
+# TYPE signalcart_http_requests_in_progress gauge
+signalcart_http_requests_in_progress 0.0
+# HELP signalcart_products_created_total Total products created through SignalCart API.
+# TYPE signalcart_products_created_total counter
+signalcart_products_created_total 1.0
+# HELP signalcart_products_created_created Total products created through SignalCart API.
+# TYPE signalcart_products_created_created gauge
+signalcart_products_created_created 1.7774831387043734e+09
+# HELP signalcart_orders_created_total Total orders created through SignalCart API.
+# TYPE signalcart_orders_created_total counter
+signalcart_orders_created_total 1.0
+# HELP signalcart_orders_created_created Total orders created through SignalCart API.
+# TYPE signalcart_orders_created_created gauge
+signalcart_orders_created_created 1.7774831387043862e+09
+# HELP signalcart_checkouts_completed_total Total successful checkouts completed through SignalCart API.
+# TYPE signalcart_checkouts_completed_total counter
+signalcart_checkouts_completed_total 1.0
+# HELP signalcart_checkouts_completed_created Total successful checkouts completed through SignalCart API.
+# TYPE signalcart_checkouts_completed_created gauge
+signalcart_checkouts_completed_created 1.777483138704397e+09
+# HELP signalcart_checkout_failures_total Total checkout failures through SignalCart API.
+# TYPE signalcart_checkout_failures_total counter
+signalcart_checkout_failures_total 0.0
+# HELP signalcart_checkout_failures_created Total checkout failures through SignalCart API.
+# TYPE signalcart_checkout_failures_created gauge
+signalcart_checkout_failures_created 1.7774831387044075e+09
+# HELP signalcart_database_ready Database readiness status for SignalCart API. 1 means ready, 0 means not ready.
+# TYPE signalcart_database_ready gauge
+signalcart_database_ready 1.0
+# HELP signalcart_simulation_active Simulation flag state. 1 means active, 0 means inactive.
+# TYPE signalcart_simulation_active gauge
+signalcart_simulation_active{simulation="latency_spike"} 0.0
+signalcart_simulation_active{simulation="error_spike"} 0.0
+signalcart_simulation_active{simulation="db_readiness_failure"} 0.0

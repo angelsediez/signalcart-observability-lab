@@ -70,3 +70,29 @@ Each alert validation should capture:
 - related Grafana panel
 - command output when useful
 - recovery validation
+
+## Alert Review Questions
+
+Before keeping an alert, answer:
+
+- Does this alert represent user impact or a strong leading signal?
+- Can an operator take action from the alert?
+- Is the alert connected to a runbook?
+- Is the expression understandable?
+- Is the duration long enough to avoid noisy short spikes?
+- Is the severity label meaningful?
+
+## Example Alert Evidence Record
+
+```text
+Alert:
+Symptom:
+PromQL:
+Expected state:
+Observed state:
+Dashboard:
+Runbook:
+Recovery action:
+Validation after recovery:
+Evidence files:
+```

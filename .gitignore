@@ -39,7 +39,6 @@ grafana-data/
 prometheus-data/
 alertmanager-data/
 
-# Project source books / private study materials
 # PDFs are local study sources and must not be committed.
 
 # k6 output

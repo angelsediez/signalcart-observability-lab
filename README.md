@@ -2,29 +2,33 @@
 
 SignalCart Observability Lab is a local-first observability homelab for practicing practical SRE operations with a small FastAPI checkout/cart service.
 
-The lab demonstrates how to instrument, monitor, visualize, alert on, troubleshoot, and recover a service using a metrics-driven observability workflow.
+The lab demonstrates how to instrument, monitor, visualize, validate alerts, troubleshoot, and recover a service using a metrics-driven observability workflow.
 
 ## What This Lab Demonstrates
 
 - API health and readiness checks
 - Application metrics
-- Prometheus scraping
-- Grafana dashboards
-- Alertmanager alert validation
-- Synthetic monitoring with Blackbox Exporter
-- Host and container monitoring
-- PostgreSQL monitoring
-- Load testing with k6
+- Prometheus-compatible metrics exposition
+- Docker Compose runtime validation
+- Nginx reverse proxy validation
+- PostgreSQL-backed persistence
+- SQLAlchemy data access
+- Alembic database migrations
+- pytest-based validation
+- Synthetic-ready HTTP entrypoint
+- Load testing preparation with k6
 - Controlled incident simulations
 - Runbook-driven troubleshooting
 - Recovery validation
-- Evidence-based incident documentation
+- Evidence-based operational documentation
 
 ## Service Under Observation
 
 The application under observation is **SignalCart API**, a small checkout/cart API with products, orders, checkout, health checks, metrics, and controlled incident simulation endpoints.
 
-### Application endpoints
+The application is intentionally simple so the main focus stays on observability, SRE operations, incident response, and troubleshooting.
+
+Application endpoints:
 
 - `GET /health/live`
 - `GET /health/ready`
@@ -36,7 +40,7 @@ The application under observation is **SignalCart API**, a small checkout/cart A
 - `POST /orders`
 - `POST /checkout`
 
-### Lab simulation endpoints
+Lab simulation endpoints:
 
 - `POST /lab/simulations/latency-spike`
 - `POST /lab/simulations/error-spike`
@@ -64,13 +68,8 @@ SIMULATION_TOKEN
 - pytest
 - Nginx
 - Docker Compose
-- Prometheus
-- Grafana
-- Alertmanager
-- Node Exporter
-- cAdvisor
-- PostgreSQL Exporter
-- Blackbox Exporter
+- Prometheus-compatible application metrics
+- prometheus-client
 - k6
 - Bash scripts
 - runbooks
@@ -96,48 +95,69 @@ User / curl / k6
 ## Observability Workflow
 
 ```text
-SignalCart API /metrics  ----\
-PostgreSQL Exporter       ----\
-Node Exporter             ----- Prometheus ---- Grafana
-cAdvisor                  ----/       |
-Blackbox Exporter         ---/        v
-                                  Alertmanager
+SignalCart API /metrics
+        |
+        v
+Prometheus-compatible metrics endpoint
+
+Nginx-exposed API endpoint
+        |
+        v
+Synthetic monitoring ready path
 ```
 
-Prometheus collects metrics from the application and exporters. Grafana visualizes service and infrastructure behavior. Alertmanager is used to validate alerts during controlled incidents. Blackbox Exporter checks the endpoint exposed through Nginx from an external perspective.
+The API exposes application metrics in Prometheus text format at `/metrics`. The endpoint is reachable through Nginx in the Docker Compose runtime.
+
+## Application Metrics
+
+SignalCart API exposes metrics for:
+
+- HTTP request count by method, route, and status code
+- HTTP request duration histogram
+- in-progress requests
+- products created
+- orders created
+- completed checkouts
+- checkout failures
+- database readiness
+- active simulation flags
 
 ## Incident Simulations
 
 The lab validates observability through controlled incident scenarios:
 
-- API latency spike
-- API error rate spike
-- PostgreSQL readiness failure
-- Nginx endpoint failure
-- Load test behavior under k6
+1. API latency spike
+2. API error rate spike
+3. PostgreSQL readiness failure
+4. Nginx endpoint failure
+5. Load test behavior under k6
 
 Each incident follows an evidence-driven workflow:
 
-- Hypothesis
-- Experiment
-- Metric observed
-- Alert expected
-- Evidence captured
-- Diagnosis
-- Recovery
-- Lesson learned
+1. Hypothesis
+2. Experiment
+3. Metric observed
+4. Alert expected
+5. Evidence captured
+6. Diagnosis
+7. Recovery
+8. Lesson learned
 
 ## Evidence and Runbooks
 
 Operational evidence is stored under:
 
-- `validation/`
-- `assets/screenshots/`
+```text
+validation/
+assets/screenshots/
+```
 
 Runbooks and troubleshooting notes are stored under:
 
-- `runbooks/`
-- `troubleshooting/`
+```text
+runbooks/
+troubleshooting/
+```
 
 The goal is to make every operational claim verifiable through commands, metrics, dashboards, alerts, screenshots, and recovery notes.
 
@@ -157,6 +177,7 @@ signalcart-observability-lab/
 ├── troubleshooting/
 ├── assets/
 ├── validation/
+├── migrations/
 └── notes/
 ```
 
@@ -167,6 +188,7 @@ signalcart-observability-lab/
 - Phase 02: SignalCart API baseline — completed
 - Phase 03: PostgreSQL, SQLAlchemy, and Alembic — completed
 - Phase 04: Metrics instrumentation — completed
+- Phase 05: Docker Compose runtime with Nginx — completed
 
 
 ## License

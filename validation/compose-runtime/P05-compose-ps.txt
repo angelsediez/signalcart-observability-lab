@@ -1,0 +1,4 @@
+NAME                  IMAGE                  COMMAND                  SERVICE    CREATED         STATUS                           PORTS
+signalcart-api        signalcart-api:local   "python3 -m uvicorn …"   api        12 hours ago    Up 18 minutes (healthy)          8000/tcp
+signalcart-nginx      nginx:1.27-alpine      "/docker-entrypoint.…"   nginx      3 seconds ago   Up 1 second (health: starting)   127.0.0.1:8080->80/tcp
+signalcart-postgres   postgres:17-alpine     "docker-entrypoint.s…"   postgres   4 minutes ago   Up 4 minutes (healthy)           127.0.0.1:5432->5432/tcp

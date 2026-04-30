@@ -1,0 +1,12 @@
+# HELP signalcart_products_created_total Total products created through SignalCart API.
+# TYPE signalcart_products_created_total counter
+signalcart_products_created_total 1.0
+# HELP signalcart_orders_created_total Total orders created through SignalCart API.
+# TYPE signalcart_orders_created_total counter
+signalcart_orders_created_total 1.0
+# HELP signalcart_checkouts_completed_total Total successful checkouts completed through SignalCart API.
+# TYPE signalcart_checkouts_completed_total counter
+signalcart_checkouts_completed_total 1.0
+# HELP signalcart_checkout_failures_total Total checkout failures through SignalCart API.
+# TYPE signalcart_checkout_failures_total counter
+signalcart_checkout_failures_total 0.0

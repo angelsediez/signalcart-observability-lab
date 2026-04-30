@@ -15,76 +15,6 @@ The lab should answer operational questions with evidence:
 - Did the expected alert appear?
 - Did recovery resolve the symptom?
 
-## Application Metrics
-
-Planned application metrics:
-
-- `http_requests_total`
-- `http_request_duration_seconds`
-- `http_requests_in_progress`
-- `http_errors_total`
-- `app_build_info`
-- `app_database_ready`
-- `checkout_requests_total`
-- `checkout_failures_total`
-
-## API RED Dashboard Model
-
-RED means:
-
-- Rate
-- Errors
-- Duration
-
-For SignalCart API, RED is applied to HTTP endpoints and checkout behavior.
-
-## Infrastructure USE Dashboard Model
-
-USE means:
-
-- Utilization
-- Saturation
-- Errors
-
-For this lab, USE is applied to host and container metrics.
-
-## PostgreSQL Monitoring
-
-PostgreSQL metrics are collected with PostgreSQL Exporter.
-
-Planned database signals:
-
-- database availability
-- active connections
-- transactions
-- rollbacks
-- database size
-- readiness behavior from the API
-
-## Synthetic Monitoring
-
-Blackbox Exporter validates the endpoint exposed through Nginx.
-
-Planned synthetic metrics:
-
-- `probe_success`
-- `probe_duration_seconds`
-- `probe_http_status_code`
-
-Synthetic monitoring complements internal application metrics by checking the service from the outside.
-
-## Operational Workflow
-
-Each incident simulation follows this cycle:
-
-1. Hypothesis
-2. Experiment
-3. Metric observed
-4. Alert expected
-5. Evidence captured
-6. Diagnosis
-7. Recovery
-8. Lesson learned
 ## Health and Readiness Endpoints
 
 SignalCart API exposes two health endpoints:
@@ -92,13 +22,9 @@ SignalCart API exposes two health endpoints:
 - `/health/live` confirms that the API process is alive.
 - `/health/ready` confirms that the API is ready to serve traffic.
 
-The readiness response currently reports the database dependency as `not_configured`. Database-backed readiness is added when PostgreSQL is connected.
-
-## Database-Backed Readiness
-
 The readiness endpoint validates PostgreSQL with a lightweight database query.
 
-Expected healthy response:
+Expected healthy readiness response:
 
 ```json
 {
@@ -138,6 +64,20 @@ The request metrics use low-cardinality labels:
 
 The `route` label uses route templates instead of raw URLs.
 
+## Application Metric Names
+
+Planned and implemented application metrics include:
+
+- `signalcart_http_requests_total`
+- `signalcart_http_request_duration_seconds`
+- `signalcart_http_requests_in_progress`
+- `signalcart_products_created_total`
+- `signalcart_orders_created_total`
+- `signalcart_checkouts_completed_total`
+- `signalcart_checkout_failures_total`
+- `signalcart_database_ready`
+- `signalcart_simulation_active`
+
 ## Domain Metrics
 
 SignalCart exposes domain counters for key API actions:
@@ -174,6 +114,53 @@ signalcart_simulation_active{simulation="db_readiness_failure"}
 
 A value of `1` means the simulation is active. A value of `0` means it is inactive.
 
+## Synthetic Monitoring
+
+The Nginx entrypoint provides a stable path for synthetic checks:
+
+```text
+http://127.0.0.1:8080/health/ready
+```
+
+Synthetic checks validate the service from the outside, instead of only trusting internal application metrics.
+
+## API RED Dashboard Model
+
+RED means:
+
+- Rate
+- Errors
+- Duration
+
+For SignalCart API, RED is applied to HTTP endpoints and checkout behavior.
+
+## Infrastructure USE Dashboard Model
+
+USE means:
+
+- Utilization
+- Saturation
+- Errors
+
+For this lab, USE is applied to host and container metrics when infrastructure metrics collection is added.
+
+## PostgreSQL Monitoring
+
+PostgreSQL is validated by:
+
+- API readiness checks
+- SQL query validation
+- migration evidence
+- application metrics
+- runtime container health
+
+Database signals include:
+
+- database availability
+- schema migration state
+- stored products and orders
+- readiness behavior from the API
+
 ## Label Cardinality
 
 Metric labels must avoid high cardinality.
@@ -195,3 +182,16 @@ Avoid labels such as:
 - request body values
 
 Low-cardinality labels keep metrics useful, queryable, and safe to aggregate.
+
+## Operational Workflow
+
+Each incident simulation follows this cycle:
+
+1. Hypothesis
+2. Experiment
+3. Metric observed
+4. Alert expected
+5. Evidence captured
+6. Diagnosis
+7. Recovery
+8. Lesson learned

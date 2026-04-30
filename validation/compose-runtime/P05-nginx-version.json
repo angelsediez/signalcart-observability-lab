@@ -1,0 +1,5 @@
+{
+  "service": "SignalCart API",
+  "version": "0.1.0",
+  "environment": "local"
+}
