@@ -1,0 +1,120 @@
+signalcart-grafana  | t=2026-04-30T21:08:53.620046384Z level=info caller=logger.go:214 time=2026-04-30T21:08:53.620040564Z msg="Installed APIs for app" app=alerting-notifications
+signalcart-grafana  | logger=grafana-apiserver t=2026-04-30T21:08:53.621234481Z level=info msg="Adding GroupVersion advisor.grafana.app v0alpha1 to ResourceManager"
+signalcart-grafana  | t=2026-04-30T21:08:53.621338352Z level=info caller=logger.go:214 time=2026-04-30T21:08:53.621332362Z msg="Installed APIs for app" app=advisor
+signalcart-grafana  | t=2026-04-30T21:08:54.248864126Z level=info caller=logger.go:214 time=2026-04-30T21:08:54.248843276Z msg="App initialized" app=plugins
+signalcart-grafana  | t=2026-04-30T21:08:54.248897836Z level=info caller=logger.go:214 time=2026-04-30T21:08:54.248877006Z msg="App initialized" app=example
+signalcart-grafana  | t=2026-04-30T21:08:54.248957376Z level=info caller=logger.go:214 time=2026-04-30T21:08:54.248949866Z msg="App initialized" app=alerting-notifications
+signalcart-grafana  | t=2026-04-30T21:08:54.248995247Z level=info caller=logger.go:214 time=2026-04-30T21:08:54.248987216Z msg="App initialized" app=playlist
+signalcart-grafana  | t=2026-04-30T21:08:54.249007657Z level=info caller=logger.go:214 time=2026-04-30T21:08:54.249003217Z msg="App initialized" app=alerting
+signalcart-grafana  | t=2026-04-30T21:08:54.249070557Z level=info caller=logger.go:214 time=2026-04-30T21:08:54.249059167Z msg="App initialized" app=advisor
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.249192338Z level=info msg=starting module=plugins.store
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.249245488Z level=info msg=starting module=plugin.backgroundinstaller
+signalcart-grafana  | logger=plugin.backgroundinstaller t=2026-04-30T21:08:54.249265898Z level=info msg="Plugins installed" plugins=[]
+signalcart-grafana  | logger=plugin.backgroundinstaller t=2026-04-30T21:08:54.249288809Z level=info msg="Installing plugins" plugins="[{ID:grafana-metricsdrilldown-app Version: URL:} {ID:elasticsearch Version: URL:} {ID:grafana-lokiexplore-app Version: URL:} {ID:grafana-pyroscope-app Version: URL:} {ID:grafana-exploretraces-app Version: URL:}]"
+signalcart-grafana  | logger=plugin.backgroundinstaller t=2026-04-30T21:08:54.249331979Z level=info msg="Installing plugin" pluginId=grafana-metricsdrilldown-app version=
+signalcart-grafana  | t=2026-04-30T21:08:54.249385079Z level=info caller=logger.go:214 time=2026-04-30T21:08:54.249355659Z msg="start concurrent job driver" logger=concurrent-job-driver num_drivers=3 num_drivers=3
+signalcart-grafana  | t=2026-04-30T21:08:54.249414399Z level=info caller=logger.go:214 time=2026-04-30T21:08:54.249398709Z msg="starting job cleanup controller" logger=job-cleanup-controller cleanup_interval=1m30s expiry=30s
+signalcart-grafana  | t=2026-04-30T21:08:54.2494655Z level=info caller=logger.go:214 time=2026-04-30T21:08:54.24945289Z msg="start job driver" logger=concurrent-job-driver num_drivers=3 driver_id=1
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.24948896Z level=info msg=starting module=provisioning
+signalcart-grafana  | t=2026-04-30T21:08:54.24953494Z level=info caller=logger.go:214 time=2026-04-30T21:08:54.24951183Z msg="start job driver" logger=concurrent-job-driver num_drivers=3 driver_id=0
+signalcart-grafana  | t=2026-04-30T21:08:54.2495535Z level=info caller=logger.go:214 time=2026-04-30T21:08:54.24951242Z msg="start job driver" logger=concurrent-job-driver num_drivers=3 driver_id=2
+signalcart-grafana  | t=2026-04-30T21:08:54.2495916Z level=info caller=logger.go:214 time=2026-04-30T21:08:54.24953987Z msg="Starting RepositoryController" logger=provisioning-repository-controller
+signalcart-grafana  | logger=provisioning.datasources t=2026-04-30T21:08:54.253965479Z level=info msg="inserting datasource from configuration" name=Prometheus uid=prometheus
+signalcart-grafana  | logger=provisioning.plugins t=2026-04-30T21:08:54.307020723Z level=error msg="Failed to read plugin provisioning files from directory" path=/etc/grafana/provisioning/plugins error="open /etc/grafana/provisioning/plugins: no such file or directory"
+signalcart-grafana  | logger=provisioning.alerting t=2026-04-30T21:08:54.307091174Z level=error msg="can't read alerting provisioning files from directory" path=/etc/grafana/provisioning/alerting error="open /etc/grafana/provisioning/alerting: no such file or directory"
+signalcart-grafana  | logger=provisioning.alerting t=2026-04-30T21:08:54.307097164Z level=info msg="starting to provision alerting"
+signalcart-grafana  | logger=provisioning.alerting t=2026-04-30T21:08:54.307107074Z level=info msg="finished to provision alerting"
+signalcart-grafana  | logger=bleve-backend namespace=default group=dashboard.grafana.app resource=dashboards size=0 reason=search t=2026-04-30T21:08:54.337212529Z level=info msg="Building index using memory"
+signalcart-grafana  | logger=bleve-backend namespace=default group=dashboard.grafana.app resource=dashboards size=0 reason=search t=2026-04-30T21:08:54.338033634Z level=info msg="Finished building index" elapsed=777.275µs listRV=1777583331072999
+signalcart-grafana  | logger=bleve-backend namespace=default group=dashboard.grafana.app resource=dashboards size=0 reason=search t=2026-04-30T21:08:54.338063075Z level=info msg="Storing index in cache" key="{Namespace:default Group:dashboard.grafana.app Resource:dashboards}" expiration=2026-04-30T21:18:54.338061515Z
+signalcart-grafana  | logger=provisioning.dashboard t=2026-04-30T21:08:54.352579569Z level=info msg="starting to provision dashboards"
+signalcart-grafana  | logger=bleve-backend namespace=default group=folder.grafana.app resource=folders size=0 reason=search t=2026-04-30T21:08:54.354633662Z level=info msg="Building index using memory"
+signalcart-grafana  | logger=bleve-backend namespace=default group=folder.grafana.app resource=folders size=0 reason=search t=2026-04-30T21:08:54.355376817Z level=info msg="Finished building index" elapsed=718.755µs listRV=1777583331069982
+signalcart-grafana  | logger=bleve-backend namespace=default group=folder.grafana.app resource=folders size=0 reason=search t=2026-04-30T21:08:54.355399247Z level=info msg="Storing index in cache" key="{Namespace:default Group:folder.grafana.app Resource:folders}" expiration=2026-04-30T21:18:54.355397487Z
+signalcart-grafana  | t=2026-04-30T21:08:54.450239653Z level=info caller=logger.go:214 time=2026-04-30T21:08:54.450214993Z msg="Starting ConnectionController" logger=provisioning-connection-controller
+signalcart-grafana  | t=2026-04-30T21:08:54.450272343Z level=info caller=logger.go:214 time=2026-04-30T21:08:54.450264173Z msg="Starting workers" logger=provisioning-connection-controller count=1
+signalcart-grafana  | t=2026-04-30T21:08:54.450288613Z level=info caller=logger.go:214 time=2026-04-30T21:08:54.450282823Z msg="Started workers" logger=provisioning-connection-controller
+signalcart-grafana  | t=2026-04-30T21:08:54.450324053Z level=info caller=logger.go:214 time=2026-04-30T21:08:54.450317923Z msg="Starting workers" logger=provisioning-repository-controller count=1
+signalcart-grafana  | t=2026-04-30T21:08:54.450339723Z level=info caller=logger.go:214 time=2026-04-30T21:08:54.450334743Z msg="Started workers" logger=provisioning-repository-controller
+signalcart-grafana  | logger=provisioning.dashboard t=2026-04-30T21:08:54.688987452Z level=info msg="finished to provision dashboards"
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701514504Z level=info msg=starting module=*ssosettingsimpl.Service
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701545434Z level=info msg=starting module=*manager.SecretsService
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701535384Z level=info msg=starting module=*dualwrite.ZanzanaReconciler
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701583154Z level=info msg=starting module=*statscollector.Service
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701598024Z level=info msg=starting module=*authz.EmbeddedZanzanaService
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701600494Z level=info msg=starting module=*angulardetectorsprovider.Dynamic
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701625954Z level=info msg=starting module=*notifications.NotificationService
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701626834Z level=info msg=starting module=*pluginexternal.Service
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701636925Z level=info msg=starting module=*garbagecollectionworker.Worker
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701631174Z level=info msg=starting module=*dynamic.KeyRetriever
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701656945Z level=info msg=starting module=*rendering.RenderingService
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701656485Z level=info msg=starting module=*updatemanager.GrafanaService
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701677905Z level=info msg=starting module=*store.standardStorageService
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701690385Z level=info msg=starting module=*service.DashboardServiceImpl
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701644495Z level=info msg=starting module=*supportbundlesimpl.Service
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701718915Z level=info msg=starting module=*authimpl.UserAuthTokenService
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701660555Z level=info msg=starting module=*appregistry.Service
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701739135Z level=info msg=starting module=*store.dummyEntityEventsService
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701740325Z level=info msg=starting module=*ngalert.AlertNG
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701587634Z level=info msg=starting module=*metrics.InternalMetricsService
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701759375Z level=info msg=starting module=*updatemanager.PluginsService
+signalcart-grafana  | logger=app-registry t=2026-04-30T21:08:54.701772895Z level=info msg="app registry initialized"
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701710535Z level=info msg=starting module=*anonimpl.AnonDeviceService
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701576314Z level=info msg=starting module=*service.UsageStats
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701746305Z level=info msg=starting module=*remotecache.RemoteCache
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701820946Z level=info msg=starting module=*service.DashboardUpdater
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701666555Z level=info msg=starting module=*pushhttp.Gateway
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701720715Z level=info msg=starting module=*metric.Service
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701864806Z level=info msg=starting module=*loginattemptimpl.Service
+signalcart-grafana  | logger=grafanaStorageLogger t=2026-04-30T21:08:54.701695005Z level=info msg="Storage starting"
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701729605Z level=info msg=starting module=*migrations.SecretMigrationProviderImpl
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701870066Z level=info msg=starting module=*manager.ServiceAccountsService
+signalcart-grafana  | logger=ngalert t=2026-04-30T21:08:54.701828166Z level=info msg="Primary node, alert rule evaluation enabled"
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701911496Z level=info msg=starting module=*live.GrafanaLive
+signalcart-grafana  | logger=ngalert.state.manager t=2026-04-30T21:08:54.701917796Z level=info msg="Warming state cache for startup"
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701850766Z level=info msg=starting module=*api.HTTPServer
+signalcart-grafana  | logger=ngalert.multiorg.alertmanager t=2026-04-30T21:08:54.701987817Z level=info msg="Starting MultiOrg Alertmanager"
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.701855256Z level=info msg=starting module=*cleanup.CleanUpService
+signalcart-grafana  | logger=backgroundsvcs.managerAdapter t=2026-04-30T21:08:54.702097418Z level=info msg="All modules healthy"
+signalcart-grafana  | logger=http.server t=2026-04-30T21:08:54.70404368Z level=info msg="HTTP Server Listen" address=[::]:3000 protocol=http subUrl= socket=
+signalcart-grafana  | logger=sqlstore.transactions t=2026-04-30T21:08:54.764177751Z level=info msg="Database locked, sleeping then retrying" error="database is locked (5) (SQLITE_BUSY)" retry=0
+signalcart-grafana  | logger=grafana.update.checker t=2026-04-30T21:08:54.775297883Z level=info msg="Update check succeeded" duration=73.588368ms
+signalcart-grafana  | logger=plugins.update.checker t=2026-04-30T21:08:54.788992262Z level=info msg="flag evaluation succeeded" flag="{Value:false EvaluationDetails:{FlagKey:pluginsAutoUpdate FlagType:bool ResolutionDetail:{Variant:default Reason:STATIC ErrorCode: ErrorMessage: FlagMetadata:map[]}}}" details="{Value:false EvaluationDetails:{FlagKey:pluginsAutoUpdate FlagType:bool ResolutionDetail:{Variant:default Reason:STATIC ErrorCode: ErrorMessage: FlagMetadata:map[]}}}"
+signalcart-grafana  | logger=plugins.update.checker t=2026-04-30T21:08:54.789102253Z level=info msg="Update check succeeded" duration=87.325478ms
+signalcart-grafana  | logger=plugins.update.checker t=2026-04-30T21:08:54.789120403Z level=info msg="flag evaluation succeeded" flag="{Value:false EvaluationDetails:{FlagKey:pluginsAutoUpdate FlagType:bool ResolutionDetail:{Variant:default Reason:STATIC ErrorCode: ErrorMessage: FlagMetadata:map[]}}}" details="{Value:false EvaluationDetails:{FlagKey:pluginsAutoUpdate FlagType:bool ResolutionDetail:{Variant:default Reason:STATIC ErrorCode: ErrorMessage: FlagMetadata:map[]}}}"
+signalcart-grafana  | logger=plugin.angulardetectorsprovider.dynamic t=2026-04-30T21:08:54.954795028Z level=info msg="Patterns update finished" duration=252.415588ms
+signalcart-grafana  | logger=ngalert.state.manager t=2026-04-30T21:08:54.970246188Z level=info msg="State cache has been initialized" states=0 duration=268.332032ms
+signalcart-grafana  | logger=ngalert.scheduler t=2026-04-30T21:08:54.970303309Z level=info msg="Starting scheduler" tickInterval=10s maxAttempts=3
+signalcart-grafana  | logger=ngalert.scheduler t=2026-04-30T21:08:54.970366179Z level=info msg=starting component=ticker first_tick=2026-04-30T21:09:00Z
+signalcart-grafana  | logger=plugin.installer t=2026-04-30T21:08:55.117164742Z level=info msg="Installing plugin" pluginId=grafana-metricsdrilldown-app version=
+signalcart-grafana  | logger=installer.fs t=2026-04-30T21:08:55.208122792Z level=info msg="Downloaded and extracted grafana-metricsdrilldown-app v2.0.5 zip successfully to /var/lib/grafana/plugins/grafana-metricsdrilldown-app"
+signalcart-grafana  | logger=plugins.registration t=2026-04-30T21:08:55.231779376Z level=info msg="Plugin registered" pluginId=grafana-metricsdrilldown-app
+signalcart-grafana  | logger=plugin.backgroundinstaller t=2026-04-30T21:08:55.231802206Z level=info msg="Plugin successfully installed" pluginId=grafana-metricsdrilldown-app version= duration=982.463937ms
+signalcart-grafana  | logger=plugin.backgroundinstaller t=2026-04-30T21:08:55.475047595Z level=info msg="Installing plugin" pluginId=elasticsearch version=
+signalcart-grafana  | logger=plugin.installer t=2026-04-30T21:08:55.675494156Z level=info msg="Updating plugin" pluginId=elasticsearch from=12.5.4 to=12.6.1
+signalcart-grafana  | logger=plugin.elasticsearch t=2026-04-30T21:08:55.679430711Z level=info msg="plugin process exited" plugin=/usr/share/grafana/data/plugins-bundled/elasticsearch/gpx_grafana_elasticsearch_datasource_linux_amd64 id=45
+signalcart-grafana  | logger=plugin.backgroundinstaller t=2026-04-30T21:08:55.679852914Z level=error msg="Failed to install plugin" pluginId=elasticsearch version= error="unlinkat /usr/share/grafana/data/plugins-bundled/elasticsearch/MANIFEST.txt: permission denied"
+signalcart-grafana  | logger=plugin.backgroundinstaller t=2026-04-30T21:08:55.679876664Z level=info msg="Installing plugin" pluginId=grafana-lokiexplore-app version=
+signalcart-grafana  | logger=plugin.installer t=2026-04-30T21:08:56.783766349Z level=info msg="Installing plugin" pluginId=grafana-lokiexplore-app version=
+signalcart-grafana  | logger=installer.fs t=2026-04-30T21:08:56.941848175Z level=info msg="Downloaded and extracted grafana-lokiexplore-app v2.0.4 zip successfully to /var/lib/grafana/plugins/grafana-lokiexplore-app"
+signalcart-grafana  | logger=plugins.registration t=2026-04-30T21:08:56.972753786Z level=info msg="Plugin registered" pluginId=grafana-lokiexplore-app
+signalcart-grafana  | logger=plugin.backgroundinstaller t=2026-04-30T21:08:56.972778176Z level=info msg="Plugin successfully installed" pluginId=grafana-lokiexplore-app version= duration=1.292892582s
+signalcart-grafana  | logger=plugin.backgroundinstaller t=2026-04-30T21:08:56.972797146Z level=info msg="Installing plugin" pluginId=grafana-pyroscope-app version=
+signalcart-grafana  | logger=plugin.installer t=2026-04-30T21:08:57.610289583Z level=info msg="Installing plugin" pluginId=grafana-pyroscope-app version=
+signalcart-grafana  | logger=installer.fs t=2026-04-30T21:08:57.708991224Z level=info msg="Downloaded and extracted grafana-pyroscope-app v2.0.5 zip successfully to /var/lib/grafana/plugins/grafana-pyroscope-app"
+signalcart-grafana  | logger=plugins.registration t=2026-04-30T21:08:57.732737718Z level=info msg="Plugin registered" pluginId=grafana-pyroscope-app
+signalcart-grafana  | logger=plugin.backgroundinstaller t=2026-04-30T21:08:57.732757698Z level=info msg="Plugin successfully installed" pluginId=grafana-pyroscope-app version= duration=759.955212ms
+signalcart-grafana  | logger=plugin.backgroundinstaller t=2026-04-30T21:08:57.732776428Z level=info msg="Installing plugin" pluginId=grafana-exploretraces-app version=
+signalcart-grafana  | logger=plugin.installer t=2026-04-30T21:08:58.675976969Z level=info msg="Installing plugin" pluginId=grafana-exploretraces-app version=
+signalcart-grafana  | logger=installer.fs t=2026-04-30T21:08:58.76246457Z level=info msg="Downloaded and extracted grafana-exploretraces-app v2.0.3 zip successfully to /var/lib/grafana/plugins/grafana-exploretraces-app"
+signalcart-grafana  | logger=plugins.registration t=2026-04-30T21:08:58.789662047Z level=info msg="Plugin registered" pluginId=grafana-exploretraces-app
+signalcart-grafana  | logger=plugin.backgroundinstaller t=2026-04-30T21:08:58.789681647Z level=info msg="Plugin successfully installed" pluginId=grafana-exploretraces-app version= duration=1.056900109s
+signalcart-grafana  | logger=dashboard-service t=2026-04-30T21:09:24.735452276Z level=info msg="No last resource version found, starting from scratch" orgID=1
+signalcart-grafana  | logger=dashboard-service t=2026-04-30T21:09:54.722230003Z level=info msg="No last resource version found, starting from scratch" orgID=1
+signalcart-grafana  | logger=bleve-backend namespace=default group=provisioning.grafana.app resource=repositories size=0 reason=getStats t=2026-04-30T21:10:06.706596012Z level=info msg="Building index using memory"
+signalcart-grafana  | logger=bleve-backend namespace=default group=provisioning.grafana.app resource=repositories size=0 reason=getStats t=2026-04-30T21:10:06.707067285Z level=info msg="Finished building index" elapsed=441.513µs listRV=1
+signalcart-grafana  | logger=bleve-backend namespace=default group=provisioning.grafana.app resource=repositories size=0 reason=getStats t=2026-04-30T21:10:06.707081575Z level=info msg="Storing index in cache" key="{Namespace:default Group:provisioning.grafana.app Resource:repositories}" expiration=2026-04-30T21:20:06.707080825Z
+signalcart-grafana  | logger=bleve-backend namespace=default group=playlist.grafana.app resource=playlists size=0 reason=getStats t=2026-04-30T21:10:06.70785467Z level=info msg="Building index using memory"
+signalcart-grafana  | logger=bleve-backend namespace=default group=playlist.grafana.app resource=playlists size=0 reason=getStats t=2026-04-30T21:10:06.708268843Z level=info msg="Finished building index" elapsed=401.723µs listRV=1
+signalcart-grafana  | logger=bleve-backend namespace=default group=playlist.grafana.app resource=playlists size=0 reason=getStats t=2026-04-30T21:10:06.708282883Z level=info msg="Storing index in cache" key="{Namespace:default Group:playlist.grafana.app Resource:playlists}" expiration=2026-04-30T21:20:06.708282033Z
+signalcart-grafana  | logger=infra.usagestats t=2026-04-30T21:10:06.708542345Z level=info msg="Usage stats are ready to report"

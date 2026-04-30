@@ -1,0 +1,63 @@
+== Dashboard JSON validation ==
+OK dashboards/api-red-dashboard.json uid=signalcart-api-red title=API RED Metrics panels=8
+OK dashboards/infrastructure-use-dashboard.json uid=signalcart-infrastructure-use title=Infrastructure and Container Metrics panels=6
+OK dashboards/postgres-dashboard.json uid=signalcart-postgres title=PostgreSQL Metrics panels=7
+OK dashboards/signalcart-overview.json uid=signalcart-overview title=SignalCart Overview panels=9
+OK dashboards/synthetic-checks-dashboard.json uid=signalcart-synthetic-checks title=Synthetic Checks panels=6
+
+== Grafana provisioning summary ==
+== Grafana health ==
+{
+  "database": "ok",
+  "version": "13.0.1",
+  "commit": "a100054f"
+}
+
+== Grafana Prometheus datasource ==
+{
+  "name": "Prometheus",
+  "uid": "prometheus",
+  "type": "prometheus",
+  "url": "http://prometheus:9090",
+  "isDefault": true
+}
+
+== Provisioned SignalCart dashboards ==
+SignalCart	bfkopvzo42yo0c	dash-folder
+API RED Metrics	signalcart-api-red	dash-db	SignalCart
+Infrastructure and Container Metrics	signalcart-infrastructure-use	dash-db	SignalCart
+PostgreSQL Metrics	signalcart-postgres	dash-db	SignalCart
+SignalCart Overview	signalcart-overview	dash-db	SignalCart
+Synthetic Checks	signalcart-synthetic-checks	dash-db	SignalCart
+
+== Dashboard UID validation ==
+== signalcart-overview ==
+{
+  "uid": "signalcart-overview",
+  "title": "SignalCart Overview",
+  "panels": 9
+}
+== signalcart-api-red ==
+{
+  "uid": "signalcart-api-red",
+  "title": "API RED Metrics",
+  "panels": 8
+}
+== signalcart-infrastructure-use ==
+{
+  "uid": "signalcart-infrastructure-use",
+  "title": "Infrastructure and Container Metrics",
+  "panels": 6
+}
+== signalcart-postgres ==
+{
+  "uid": "signalcart-postgres",
+  "title": "PostgreSQL Metrics",
+  "panels": 7
+}
+== signalcart-synthetic-checks ==
+{
+  "uid": "signalcart-synthetic-checks",
+  "title": "Synthetic Checks",
+  "panels": 6
+}

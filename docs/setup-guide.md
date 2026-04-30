@@ -2,20 +2,7 @@
 
 ## Host Baseline
 
-Target host:
-
-- Ubuntu 24.04.4 LTS
-- local homelab machine
-- Docker Engine
-- Docker Compose plugin
-- k6
-
-Phase 00 evidence is stored in:
-
-```text
-validation/host-baseline/
-assets/screenshots/phase-00/
-```
+Target host: Ubuntu 24.04.4 LTS local homelab machine with Docker Engine, Docker Compose plugin, and k6.
 
 ## Local Repository
 
@@ -46,209 +33,61 @@ git@github.com-signalcart:angelsediez/signalcart-observability-lab.git
 
 ## Environment Variables
 
-Use `.env.example` as the template for local configuration.
-
-```bash
-cp .env.example .env
-```
-
-Simulation endpoints are disabled by default:
-
-```env
-SIMULATION_MODE=false
-```
-
-To run incident simulations during the lab, set:
-
-```env
-SIMULATION_MODE=true
-SIMULATION_TOKEN=your-local-token
-```
+Use `.env.example` as the template for local configuration. Simulation endpoints are disabled by default with `SIMULATION_MODE=false`.
 
 ## Running SignalCart API Locally
-
-Create and activate a Python virtual environment:
 
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
-```
-
-Install development dependencies:
-
-```bash
 python3 -m pip install -r requirements-dev.txt
-```
-
-Run the API locally:
-
-```bash
 python3 -m uvicorn app.main:app --host 127.0.0.1 --port 8000
 ```
 
-Validate health endpoints:
+Validate:
 
 ```bash
 curl -s http://127.0.0.1:8000/health/live | jq .
 curl -s http://127.0.0.1:8000/health/ready | jq .
-```
-
-Run the smoke test:
-
-```bash
 bash scripts/smoke-test.sh
-```
-
-Run tests:
-
-```bash
 python3 -m pytest -q
 ```
 
 ## PostgreSQL Local Database
 
-Start PostgreSQL:
-
 ```bash
 docker compose up -d postgres
-```
-
-Check PostgreSQL readiness:
-
-```bash
 docker compose exec -T postgres pg_isready -U signalcart -d signalcart
-```
-
-Apply database migrations:
-
-```bash
 alembic upgrade head
-```
-
-Inspect tables:
-
-```bash
 docker compose exec -T postgres psql -U signalcart -d signalcart -c "\dt"
-```
-
-Run the API with PostgreSQL available:
-
-```bash
-python3 -m uvicorn app.main:app --host 127.0.0.1 --port 8000
-```
-
-Validate readiness:
-
-```bash
-curl -s http://127.0.0.1:8000/health/ready | jq .
 ```
 
 ## Metrics Validation
 
-Run the API locally:
-
-```bash
-python3 -m uvicorn app.main:app --host 127.0.0.1 --port 8000
-```
-
-Check the metrics endpoint:
-
 ```bash
 curl -s http://127.0.0.1:8000/metrics | grep '^signalcart_'
-```
-
-Validate database readiness metric:
-
-```bash
-curl -s http://127.0.0.1:8000/health/ready | jq .
 curl -s http://127.0.0.1:8000/metrics | grep '^signalcart_database_ready'
-```
-
-Generate API traffic:
-
-```bash
 bash scripts/smoke-test.sh
-```
-
-Check domain counters:
-
-```bash
-curl -s http://127.0.0.1:8000/metrics \
-  | grep -E 'signalcart_(products_created_total|orders_created_total|checkouts_completed_total|checkout_failures_total)'
 ```
 
 ## Running with Docker Compose and Nginx
 
-Build the API image:
-
 ```bash
 docker compose build api
-```
-
-Start the runtime:
-
-```bash
 docker compose up -d postgres api nginx
-```
-
-Apply database migrations from the API container:
-
-```bash
 docker compose exec -T api alembic upgrade head
-```
-
-Check container status:
-
-```bash
 docker compose ps
 ```
 
-Validate the Nginx entrypoint:
+Validate Nginx entrypoint:
 
 ```bash
 curl -s http://127.0.0.1:8080/health/live | jq .
 curl -s http://127.0.0.1:8080/health/ready | jq .
 curl -s http://127.0.0.1:8080/version | jq .
-```
-
-Validate metrics through Nginx:
-
-```bash
 curl -s http://127.0.0.1:8080/metrics | grep '^signalcart_'
-```
-
-Run the Compose smoke test:
-
-```bash
 BASE_URL=http://127.0.0.1:8080 bash scripts/compose-smoke-test.sh
 ```
-
-## Evidence Locations
-
-Text evidence:
-
-```text
-validation/
-```
-
-Screenshots:
-
-```text
-assets/screenshots/
-```
-
-Runbooks:
-
-```text
-runbooks/
-```
-
-Troubleshooting notes:
-
-```text
-troubleshooting/
-```
-
 
 ## Prometheus and Exporters
 
@@ -269,21 +108,12 @@ docker compose up -d \
 Validate Prometheus configuration:
 
 ```bash
-docker compose run --rm --no-deps prometheus \
-  promtool check config /etc/prometheus/prometheus.yml
+docker compose run --rm --no-deps prometheus promtool check config /etc/prometheus/prometheus.yml
 ```
 
-Open Prometheus:
+Open Prometheus: `http://127.0.0.1:9090`
 
-```text
-http://127.0.0.1:9090
-```
-
-Open target status:
-
-```text
-http://127.0.0.1:9090/targets
-```
+Open target status: `http://127.0.0.1:9090/targets`
 
 Check targets from the command line:
 
@@ -291,20 +121,60 @@ Check targets from the command line:
 bash scripts/check-prometheus-targets.sh
 ```
 
+Query key metrics:
 
-Query metrics in the Prometheus expression browser:
+```bash
+curl -G -s http://127.0.0.1:9090/api/v1/query --data-urlencode 'query=up' | jq .
+curl -G -s http://127.0.0.1:9090/api/v1/query --data-urlencode 'query=signalcart_database_ready' | jq .
+curl -G -s http://127.0.0.1:9090/api/v1/query --data-urlencode 'query=pg_up' | jq .
+curl -G -s http://127.0.0.1:9090/api/v1/query --data-urlencode 'query=probe_success{job="blackbox-nginx"}' | jq .
+```
+
+## Grafana Dashboards
+
+Start Grafana with the runtime:
+
+```bash
+docker compose up -d \
+  postgres \
+  api \
+  nginx \
+  node-exporter \
+  cadvisor \
+  postgres-exporter \
+  blackbox-exporter \
+  prometheus \
+  grafana
+```
+
+Open Grafana: `http://127.0.0.1:3000`
+
+Default local credentials: `admin / admin`
+
+Validate Grafana provisioning:
+
+```bash
+bash scripts/check-grafana-provisioning.sh
+curl -s -u admin:admin http://127.0.0.1:3000/api/datasources/name/Prometheus | jq .
+curl -s -u admin:admin 'http://127.0.0.1:3000/api/search?query=SignalCart' | jq .
+```
+
+Recommended dashboard URLs:
 
 ```text
-http://127.0.0.1:9090/graph
+http://127.0.0.1:3000/d/signalcart-overview
+http://127.0.0.1:3000/d/signalcart-api-red
+http://127.0.0.1:3000/d/signalcart-infrastructure-use
+http://127.0.0.1:3000/d/signalcart-postgres
+http://127.0.0.1:3000/d/signalcart-synthetic-checks
 ```
 
-Useful PromQL expressions:
+## Evidence Locations
 
-```promql
-up
-signalcart_database_ready
-pg_up
-probe_success{job="blackbox-nginx"}
-node_cpu_seconds_total
-container_cpu_usage_seconds_total
-```
+Text evidence: `validation/`
+
+Screenshots: `assets/screenshots/`
+
+Runbooks: `runbooks/`
+
+Troubleshooting notes: `troubleshooting/`

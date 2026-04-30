@@ -1,0 +1,23 @@
+== Grafana health ==
+{
+  "database": "ok",
+  "version": "13.0.1",
+  "commit": "a100054f"
+}
+
+== Grafana Prometheus datasource ==
+{
+  "name": "Prometheus",
+  "uid": "prometheus",
+  "type": "prometheus",
+  "url": "http://prometheus:9090",
+  "isDefault": true
+}
+
+== Provisioned SignalCart dashboards ==
+SignalCart	bfkopvzo42yo0c	dash-folder
+API RED Metrics	signalcart-api-red	dash-db	SignalCart
+Infrastructure and Container Metrics	signalcart-infrastructure-use	dash-db	SignalCart
+PostgreSQL Metrics	signalcart-postgres	dash-db	SignalCart
+SignalCart Overview	signalcart-overview	dash-db	SignalCart
+Synthetic Checks	signalcart-synthetic-checks	dash-db	SignalCart

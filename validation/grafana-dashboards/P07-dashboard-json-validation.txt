@@ -1,0 +1,5 @@
+OK dashboards/api-red-dashboard.json uid=signalcart-api-red title=API RED Metrics panels=8
+OK dashboards/infrastructure-use-dashboard.json uid=signalcart-infrastructure-use title=Infrastructure and Container Metrics panels=6
+OK dashboards/postgres-dashboard.json uid=signalcart-postgres title=PostgreSQL Metrics panels=7
+OK dashboards/signalcart-overview.json uid=signalcart-overview title=SignalCart Overview panels=9
+OK dashboards/synthetic-checks-dashboard.json uid=signalcart-synthetic-checks title=Synthetic Checks panels=6

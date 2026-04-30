@@ -52,3 +52,10 @@ compose-logs:
 
 compose-smoke:
 	BASE_URL=http://127.0.0.1:8080 bash scripts/compose-smoke-test.sh
+
+
+grafana-up:
+	docker compose up -d postgres api nginx node-exporter cadvisor postgres-exporter blackbox-exporter prometheus grafana
+
+grafana-check:
+	bash scripts/check-grafana-provisioning.sh

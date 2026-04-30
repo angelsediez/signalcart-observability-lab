@@ -1,0 +1,30 @@
+== signalcart-overview ==
+{
+  "uid": "signalcart-overview",
+  "title": "SignalCart Overview",
+  "panels": 9
+}
+== signalcart-api-red ==
+{
+  "uid": "signalcart-api-red",
+  "title": "API RED Metrics",
+  "panels": 8
+}
+== signalcart-infrastructure-use ==
+{
+  "uid": "signalcart-infrastructure-use",
+  "title": "Infrastructure and Container Metrics",
+  "panels": 6
+}
+== signalcart-postgres ==
+{
+  "uid": "signalcart-postgres",
+  "title": "PostgreSQL Metrics",
+  "panels": 7
+}
+== signalcart-synthetic-checks ==
+{
+  "uid": "signalcart-synthetic-checks",
+  "title": "Synthetic Checks",
+  "panels": 6
+}
