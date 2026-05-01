@@ -1,0 +1,52 @@
+groups:
+  - name: signalcart-infrastructure-alerts
+    rules:
+      - alert: HostHighCPU
+        expr: |
+          100 *
+          (
+            1 - avg by (instance) (
+              rate(node_cpu_seconds_total{mode="idle"}[5m])
+            )
+          ) > 85
+        for: 5m
+        labels:
+          severity: warning
+          service: host
+          category: saturation
+        annotations:
+          summary: "Host CPU utilization is high"
+          description: "Host CPU utilization is above 85% for more than 5 minutes. Instance={{ $labels.instance }}."
+          runbook_url: "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/host-saturation.md"
+
+      - alert: HostLowMemory
+        expr: |
+          100 *
+          node_memory_MemAvailable_bytes
+          /
+          node_memory_MemTotal_bytes
+          < 10
+        for: 5m
+        labels:
+          severity: warning
+          service: host
+          category: saturation
+        annotations:
+          summary: "Host available memory is low"
+          description: "Host available memory is below 10% for more than 5 minutes. Instance={{ $labels.instance }}."
+          runbook_url: "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/host-saturation.md"
+
+      - alert: ContainerRestarting
+        expr: |
+          sum by (name) (
+            changes(container_start_time_seconds{name!=""}[10m])
+          ) > 0
+        for: 1m
+        labels:
+          severity: warning
+          service: containers
+          category: stability
+        annotations:
+          summary: "Container restart detected"
+          description: "Container {{ $labels.name }} restarted within the last 10 minutes."
+          runbook_url: "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/container-restarting.md"

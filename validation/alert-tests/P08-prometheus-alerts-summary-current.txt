@@ -1,0 +1,15 @@
+== Prometheus rule groups ==
+signalcart-api-alerts	APIHighErrorRate	inactive	warning	signalcart-api
+signalcart-api-alerts	APIHighLatencyP95	inactive	warning	signalcart-api
+signalcart-api-alerts	APIScrapeDown	inactive	critical	signalcart-api
+signalcart-api-alerts	DatabaseReadinessFailing	inactive	critical	signalcart-api
+signalcart-infrastructure-alerts	ContainerRestarting	inactive	warning	containers
+signalcart-infrastructure-alerts	HostHighCPU	inactive	warning	host
+signalcart-infrastructure-alerts	HostLowMemory	inactive	warning	host
+signalcart-postgres-alerts	PostgresDown	inactive	critical	postgres
+signalcart-postgres-alerts	PostgresExporterDown	inactive	critical	postgres
+signalcart-postgres-alerts	PostgresTooManyConnections	inactive	warning	postgres
+signalcart-synthetic-alerts	NginxEndpointDown	inactive	critical	nginx
+signalcart-synthetic-alerts	NginxHighProbeDuration	inactive	warning	nginx
+
+== Active Prometheus alerts ==

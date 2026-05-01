@@ -1,0 +1,9 @@
+ Container signalcart-observability-lab-alertmanager-run-61be2910bda4 Creating
+ Container signalcart-observability-lab-alertmanager-run-61be2910bda4 Created
+Checking '/etc/alertmanager/alertmanager.yml'  SUCCESS
+Found:
+ - global config
+ - route
+ - 0 inhibit rules
+ - 1 receivers
+ - 0 templates

@@ -1,0 +1,17 @@
+ Container signalcart-observability-lab-prometheus-run-767f1ce80ee6 Creating
+ Container signalcart-observability-lab-prometheus-run-767f1ce80ee6 Created
+Checking /etc/prometheus/prometheus.yml
+  SUCCESS: 4 rule files found
+ SUCCESS: /etc/prometheus/prometheus.yml is valid prometheus config file syntax
+
+Checking /etc/prometheus/rules/api-alerts.yml
+  SUCCESS: 4 rules found
+
+Checking /etc/prometheus/rules/infrastructure-alerts.yml
+  SUCCESS: 3 rules found
+
+Checking /etc/prometheus/rules/postgres-alerts.yml
+  SUCCESS: 3 rules found
+
+Checking /etc/prometheus/rules/synthetic-alerts.yml
+  SUCCESS: 2 rules found

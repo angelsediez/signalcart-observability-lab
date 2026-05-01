@@ -1,0 +1,26 @@
+groups:
+  - name: signalcart-synthetic-alerts
+    rules:
+      - alert: NginxEndpointDown
+        expr: probe_success{job="blackbox-nginx"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: nginx
+          category: synthetic
+        annotations:
+          summary: "Nginx readiness endpoint synthetic check is failing"
+          description: "Blackbox Exporter cannot successfully probe the Nginx readiness endpoint for more than 1 minute. Target={{ $labels.instance }}."
+          runbook_url: "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/nginx-down.md"
+
+      - alert: NginxHighProbeDuration
+        expr: probe_duration_seconds{job="blackbox-nginx"} > 1
+        for: 2m
+        labels:
+          severity: warning
+          service: nginx
+          category: latency
+        annotations:
+          summary: "Nginx synthetic probe duration is high"
+          description: "Blackbox probe duration for Nginx readiness is above 1 second for more than 2 minutes. Target={{ $labels.instance }}."
+          runbook_url: "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/nginx-down.md"

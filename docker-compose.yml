@@ -73,6 +73,7 @@ services:
       - "127.0.0.1:9090:9090"
     volumes:
       - ./docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./alerts:/etc/prometheus/rules:ro
       - signalcart-prometheus-data:/prometheus
     depends_on:
       api:
@@ -86,6 +87,8 @@ services:
       cadvisor:
         condition: service_started
       blackbox-exporter:
+        condition: service_started
+      alertmanager:
         condition: service_started
     networks:
       - signalcart-net
@@ -165,10 +168,32 @@ services:
     networks:
       - signalcart-net
 
+
+  alertmanager:
+    image: prom/alertmanager:v0.32.0
+    container_name: signalcart-alertmanager
+    command:
+      - "--config.file=/etc/alertmanager/alertmanager.yml"
+      - "--storage.path=/alertmanager"
+      - "--web.listen-address=0.0.0.0:9093"
+    ports:
+      - "127.0.0.1:9093:9093"
+    volumes:
+      - ./docker/alertmanager/alertmanager.yml:/etc/alertmanager/alertmanager.yml:ro
+      - signalcart-alertmanager-data:/alertmanager
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:9093/-/ready >/dev/null 2>&1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - signalcart-net
+
 volumes:
   signalcart-postgres-data:
   signalcart-prometheus-data:
   signalcart-grafana-data:
+  signalcart-alertmanager-data:
 
 networks:
   signalcart-net:

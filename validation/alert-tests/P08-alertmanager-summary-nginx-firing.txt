@@ -1,0 +1,28 @@
+== Alertmanager status ==
+{
+  "cluster": {
+    "name": "01KQH2M4NQV0P94KRHHMECFRJ9",
+    "peers": [
+      {
+        "address": "172.18.0.2:9094",
+        "name": "01KQH2M4NQV0P94KRHHMECFRJ9"
+      }
+    ],
+    "status": "ready"
+  },
+  "config": {
+    "original": "global:\n  resolve_timeout: 5m\n  http_config:\n    follow_redirects: true\n    enable_http2: true\n  smtp_hello: localhost\n  smtp_require_tls: true\n  smtp_tls_config:\n    insecure_skip_verify: false\n  slack_app_url: https://slack.com/api/chat.postMessage\n  pagerduty_url: https://events.pagerduty.com/v2/enqueue\n  opsgenie_api_url: https://api.opsgenie.com/\n  wechat_api_url: https://qyapi.weixin.qq.com/cgi-bin/\n  victorops_api_url: https://alert.victorops.com/integrations/generic/20131114/alert/\n  telegram_api_url: https://api.telegram.org\n  webex_api_url: https://webexapis.com/v1/messages\n  rocketchat_api_url: https://open.rocket.chat/\nroute:\n  receiver: local-alertmanager-ui\n  group_by:\n  - alertname\n  - severity\n  - service\n  continue: false\n  group_wait: 10s\n  group_interval: 1m\n  repeat_interval: 4h\nreceivers:\n- name: local-alertmanager-ui\ntemplates: []\n"
+  },
+  "uptime": "2026-05-01T06:11:41.370Z",
+  "versionInfo": {
+    "branch": "HEAD",
+    "buildDate": "20260408-18:08:22",
+    "buildUser": "root@e5ae55633a39",
+    "goVersion": "go1.26.2",
+    "revision": "685a2a1c6bb01b2c17bc1bfae995cb3416c1115e",
+    "version": "0.32.0"
+  }
+}
+
+== Alertmanager alerts ==
+NginxEndpointDown	critical	nginx	active

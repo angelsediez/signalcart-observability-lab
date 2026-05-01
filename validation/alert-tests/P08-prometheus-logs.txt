@@ -1,0 +1,28 @@
+signalcart-prometheus  | time=2026-05-01T06:12:08.870Z level=INFO source=main.go:1544 msg="updated GOGC" old=100 new=75
+signalcart-prometheus  | time=2026-05-01T06:12:08.871Z level=INFO source=main.go:676 msg="Leaving GOMAXPROCS=32: CPU quota undefined" component=automaxprocs
+signalcart-prometheus  | time=2026-05-01T06:12:08.871Z level=INFO source=memlimit.go:198 msg="GOMEMLIMIT is updated" component=automemlimit package=github.com/KimMachineGun/automemlimit/memlimit GOMEMLIMIT=30162216960 previous=9223372036854775807
+signalcart-prometheus  | time=2026-05-01T06:12:08.872Z level=INFO source=main.go:718 msg="No time or size retention was set so using the default time retention" duration=15d
+signalcart-prometheus  | time=2026-05-01T06:12:08.872Z level=INFO source=main.go:769 msg="Starting Prometheus Server" mode=server version="(version=3.5.2, branch=HEAD, revision=f22728784338bb4994cfa9cf33ca03e151566629)"
+signalcart-prometheus  | time=2026-05-01T06:12:08.872Z level=INFO source=main.go:774 msg="operational information" build_context="(go=go1.25.9, platform=linux/amd64, user=root@8115379c26ea, date=20260413-11:46:12, tags=netgo,builtinassets)" host_details="(Linux 6.17.0-23-generic #23~24.04.1-Ubuntu SMP PREEMPT_DYNAMIC Tue Apr 14 16:11:48 UTC 2 x86_64 3c43de729abc (none))" fd_limits="(soft=524287, hard=524288)" vm_limits="(soft=unlimited, hard=unlimited)"
+signalcart-prometheus  | time=2026-05-01T06:12:08.877Z level=INFO source=web.go:656 msg="Start listening for connections" component=web address=0.0.0.0:9090
+signalcart-prometheus  | time=2026-05-01T06:12:08.878Z level=INFO source=main.go:1288 msg="Starting TSDB ..."
+signalcart-prometheus  | time=2026-05-01T06:12:08.880Z level=INFO source=tls_config.go:347 msg="Listening on" component=web address=[::]:9090
+signalcart-prometheus  | time=2026-05-01T06:12:08.880Z level=INFO source=tls_config.go:350 msg="TLS is disabled." component=web http2=false address=[::]:9090
+signalcart-prometheus  | time=2026-05-01T06:12:08.881Z level=INFO source=repair.go:54 msg="Found healthy block" component=tsdb mint=1777575708140 maxt=1777579200000 ulid=01KQG6K6KN17TVESJSHHDCAYZB
+signalcart-prometheus  | time=2026-05-01T06:12:08.891Z level=INFO source=head.go:657 msg="Replaying on-disk memory mappable chunks if any" component=tsdb
+signalcart-prometheus  | time=2026-05-01T06:12:08.917Z level=INFO source=head.go:744 msg="On-disk memory mappable chunks replay completed" component=tsdb duration=25.445059ms
+signalcart-prometheus  | time=2026-05-01T06:12:08.917Z level=INFO source=head.go:752 msg="Replaying WAL, this may take a while" component=tsdb
+signalcart-prometheus  | time=2026-05-01T06:12:09.490Z level=INFO source=head.go:825 msg="WAL segment loaded" component=tsdb segment=0 maxSegment=2 duration=573.232477ms
+signalcart-prometheus  | time=2026-05-01T06:12:09.529Z level=INFO source=head.go:825 msg="WAL segment loaded" component=tsdb segment=1 maxSegment=2 duration=39.357356ms
+signalcart-prometheus  | time=2026-05-01T06:12:09.531Z level=INFO source=head.go:825 msg="WAL segment loaded" component=tsdb segment=2 maxSegment=2 duration=1.468545ms
+signalcart-prometheus  | time=2026-05-01T06:12:09.531Z level=INFO source=head.go:862 msg="WAL replay completed" component=tsdb checkpoint_replay_duration=111.709µs wal_replay_duration=614.226348ms wbl_replay_duration=230ns chunk_snapshot_load_duration=0s mmap_chunk_replay_duration=25.445059ms total_replay_duration=639.857156ms
+signalcart-prometheus  | time=2026-05-01T06:12:09.543Z level=INFO source=main.go:1309 msg="filesystem information" fs_type=EXT4_SUPER_MAGIC
+signalcart-prometheus  | time=2026-05-01T06:12:09.543Z level=INFO source=main.go:1312 msg="TSDB started"
+signalcart-prometheus  | time=2026-05-01T06:12:09.543Z level=INFO source=main.go:1497 msg="Loading configuration file" filename=/etc/prometheus/prometheus.yml
+signalcart-prometheus  | time=2026-05-01T06:12:09.551Z level=INFO source=main.go:1537 msg="Completed loading of configuration file" db_storage=1.14µs remote_storage=1.98µs web_handler=610ns query_engine=1.05µs scrape=815.867µs scrape_sd=160.29µs notify=132.71µs notify_sd=24.69µs rules=5.659042ms tracing=7.83µs filename=/etc/prometheus/prometheus.yml totalDuration=7.512426ms
+signalcart-prometheus  | time=2026-05-01T06:12:09.551Z level=INFO source=main.go:1273 msg="Server is ready to receive web requests."
+signalcart-prometheus  | time=2026-05-01T06:12:09.551Z level=INFO source=manager.go:176 msg="Starting rule manager..." component="rule manager"
+signalcart-prometheus  | time=2026-05-01T06:12:15.138Z level=INFO source=compact.go:606 msg="write block" component=tsdb mint=1777579200000 maxt=1777586400000 ulid=01KQH2N5FFAEG9N5KXXB531NWJ duration=179.387887ms ooo=false
+signalcart-prometheus  | time=2026-05-01T06:12:15.147Z level=INFO source=head.go:1410 msg="Head GC completed" component=tsdb caller=truncateMemory duration=7.933476ms
+signalcart-prometheus  | time=2026-05-01T06:12:15.303Z level=INFO source=compact.go:606 msg="write block" component=tsdb mint=1777586400641 maxt=1777593600000 ulid=01KQH2N5NBCEPTYAC9VCDJTPY0 duration=156.062429ms ooo=false
+signalcart-prometheus  | time=2026-05-01T06:12:15.327Z level=INFO source=head.go:1410 msg="Head GC completed" component=tsdb caller=truncateMemory duration=23.07999ms

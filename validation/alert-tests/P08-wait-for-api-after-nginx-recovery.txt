@@ -1,0 +1,2 @@
+Waiting for SignalCart API at http://127.0.0.1:8080
+SignalCart API is ready.

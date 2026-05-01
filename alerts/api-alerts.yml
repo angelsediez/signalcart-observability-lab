@@ -1,0 +1,61 @@
+groups:
+  - name: signalcart-api-alerts
+    rules:
+      - alert: APIScrapeDown
+        expr: up{job="signalcart-api"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: signalcart-api
+          category: availability
+        annotations:
+          summary: "SignalCart API scrape target is down"
+          description: "Prometheus cannot scrape SignalCart API metrics for more than 1 minute. Instance={{ $labels.instance }}."
+          runbook_url: "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/api-scrape-down.md"
+
+      - alert: APIHighErrorRate
+        expr: |
+          100 *
+          sum(rate(signalcart_http_requests_total{status_code=~"5.."}[5m]))
+          /
+          clamp_min(sum(rate(signalcart_http_requests_total[5m])), 0.001)
+          > 5
+        for: 2m
+        labels:
+          severity: warning
+          service: signalcart-api
+          category: errors
+        annotations:
+          summary: "SignalCart API high 5xx error rate"
+          description: "SignalCart API 5xx error percentage is above 5% for more than 2 minutes."
+          runbook_url: "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/api-high-error-rate.md"
+
+      - alert: APIHighLatencyP95
+        expr: |
+          histogram_quantile(
+            0.95,
+            sum by (le) (
+              rate(signalcart_http_request_duration_seconds_bucket[5m])
+            )
+          ) > 1
+        for: 2m
+        labels:
+          severity: warning
+          service: signalcart-api
+          category: latency
+        annotations:
+          summary: "SignalCart API p95 latency is high"
+          description: "SignalCart API p95 latency is above 1 second for more than 2 minutes."
+          runbook_url: "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/api-high-latency.md"
+
+      - alert: DatabaseReadinessFailing
+        expr: signalcart_database_ready == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: signalcart-api
+          category: readiness
+        annotations:
+          summary: "SignalCart API database readiness is failing"
+          description: "SignalCart API reports database readiness as failed for more than 1 minute."
+          runbook_url: "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/database-readiness-failing.md"

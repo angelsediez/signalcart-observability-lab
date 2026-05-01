@@ -6,13 +6,13 @@ This file records important technical decisions for SignalCart Observability Lab
 
 Status: accepted
 
-Reason: the name communicates the purpose of the project: a small cart/checkout service used to generate observable signals.
+Reason: the name communicates a small cart/checkout service used to generate observable signals.
 
 ## Decision 002: Keep the lab local-first
 
 Status: accepted
 
-Reason: the lab runs on a local Ubuntu homelab machine with Docker Compose, making it reproducible, inspectable, and easy to reset.
+Reason: the lab runs on a local Ubuntu homelab machine with Docker Compose, which keeps the environment reproducible, inspectable, and easy to reset.
 
 ## Decision 003: Use k6 as the primary load testing tool
 
@@ -30,7 +30,7 @@ Reason: Blackbox Exporter validates the endpoint exposed through Nginx from an e
 
 Status: accepted
 
-Reason: Nginx gives the lab a realistic HTTP entrypoint for API traffic, metrics access, and synthetic monitoring.
+Reason: Nginx gives the lab a realistic HTTP entrypoint for API traffic, health checks, metrics access, and synthetic monitoring.
 
 ## Decision 006: Disable simulation endpoints by default
 
@@ -66,19 +66,19 @@ Reason: Alembic makes schema changes explicit, versioned, reviewable, and repeat
 
 Status: accepted
 
-Reason: `/health/live` confirms that the API process is alive, while `/health/ready` confirms required dependencies such as PostgreSQL.
+Reason: `/health/live` confirms the API process is alive, while `/health/ready` confirms required dependencies such as PostgreSQL are usable.
 
 ## Decision 012: Expose Prometheus metrics from the application
 
 Status: accepted
 
-Reason: SignalCart API exposes application metrics directly through `/metrics` so API behavior can be validated before adding the metrics collection layer.
+Reason: SignalCart API exposes application metrics directly through `/metrics` so API behavior can be validated before collection and visualization.
 
 ## Decision 013: Use low-cardinality metric labels
 
 Status: accepted
 
-Reason: HTTP metrics use method, route template, and status code labels instead of raw URLs, IDs, query strings, or user-provided values.
+Reason: HTTP metrics use method, route template, and status code labels, avoiding raw URLs, query strings, product IDs, order IDs, or user-provided values.
 
 ## Decision 014: Use RED-style HTTP metrics for API behavior
 
@@ -90,31 +90,31 @@ Reason: request rate, errors, and duration provide a clear operational view of A
 
 Status: accepted
 
-Reason: Docker Compose provides a reproducible local runtime and documents services, networks, volumes, health checks, and runtime configuration.
+Reason: Docker Compose provides a reproducible local runtime for the API, PostgreSQL, and Nginx.
 
 ## Decision 016: Use Nginx as the HTTP entrypoint
 
 Status: accepted
 
-Reason: Nginx gives the lab a realistic HTTP entrypoint for API traffic, health checks, metrics access, and synthetic monitoring.
+Reason: Nginx gives the lab a realistic entrypoint for health checks, metrics access, and synthetic monitoring.
 
 ## Decision 017: Run the API container as a non-root user
 
 Status: accepted
 
-Reason: the API image creates and uses a dedicated `signalcart` user to reduce unnecessary privilege inside the application container.
+Reason: the API image creates and uses a dedicated `signalcart` user.
 
 ## Decision 018: Use Prometheus for metrics collection
 
 Status: accepted
 
-Reason: Prometheus collects application and exporter metrics through scrape jobs and provides a queryable time-series layer for operational validation.
+Reason: Prometheus collects application and exporter metrics through scrape jobs and provides a queryable time-series layer.
 
 ## Decision 019: Use exporters for host, container, database, and synthetic signals
 
 Status: accepted
 
-Reason: Node Exporter, cAdvisor, PostgreSQL Exporter, and Blackbox Exporter expose operational signals that the application does not provide by itself.
+Reason: Node Exporter, cAdvisor, PostgreSQL Exporter, and Blackbox Exporter expose operational signals the application does not provide by itself.
 
 ## Decision 020: Validate targets before building dashboards and alerts
 
@@ -126,10 +126,34 @@ Reason: target validation confirms that metrics are being collected correctly be
 
 Status: accepted
 
-Reason: Grafana datasource and dashboard definitions are stored in the repository so the visualization layer can be recreated from versioned files.
+Reason: Grafana datasource and dashboard definitions are stored in the repository and can be recreated from versioned files.
 
 ## Decision 022: Build focused dashboards for operational questions
 
 Status: accepted
 
-Reason: dashboards are grouped by service overview, API RED metrics, infrastructure signals, PostgreSQL behavior, and synthetic checks so each dashboard remains useful for troubleshooting.
+Reason: dashboards are grouped by service overview, API RED metrics, infrastructure signals, PostgreSQL behavior, and synthetic checks.
+
+## Decision 023: Store Prometheus alert rules as code
+
+Status: accepted
+
+Reason: alert rules are stored in versioned YAML files under `alerts/` so they can be reviewed, validated, and reproduced.
+
+## Decision 024: Use Alertmanager for local alert validation
+
+Status: accepted
+
+Reason: Alertmanager provides local alert grouping, deduplication, UI validation, and API validation without external notification integrations.
+
+## Decision 025: Require runbook annotations on alerts
+
+Status: accepted
+
+Reason: each alert includes a `runbook_url` annotation so alert evidence points to an operational starting point.
+
+## Decision 026: Validate the alert pipeline with a controlled synthetic failure
+
+Status: accepted
+
+Reason: stopping Nginx temporarily validates the path from Blackbox Exporter to Prometheus alert evaluation and Alertmanager delivery.

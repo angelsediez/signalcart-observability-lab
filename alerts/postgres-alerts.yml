@@ -1,0 +1,38 @@
+groups:
+  - name: signalcart-postgres-alerts
+    rules:
+      - alert: PostgresExporterDown
+        expr: up{job="postgres-exporter"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: postgres
+          category: availability
+        annotations:
+          summary: "PostgreSQL exporter is down"
+          description: "Prometheus cannot scrape PostgreSQL Exporter for more than 1 minute. Instance={{ $labels.instance }}."
+          runbook_url: "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/postgres-down.md"
+
+      - alert: PostgresDown
+        expr: pg_up == 0
+        for: 1m
+        labels:
+          severity: critical
+          service: postgres
+          category: availability
+        annotations:
+          summary: "PostgreSQL is down or unreachable"
+          description: "PostgreSQL Exporter reports pg_up=0 for more than 1 minute."
+          runbook_url: "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/postgres-down.md"
+
+      - alert: PostgresTooManyConnections
+        expr: pg_stat_database_numbackends{datname="signalcart"} > 20
+        for: 5m
+        labels:
+          severity: warning
+          service: postgres
+          category: saturation
+        annotations:
+          summary: "PostgreSQL has many active connections"
+          description: "PostgreSQL database signalcart has more than 20 active connections for more than 5 minutes."
+          runbook_url: "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/postgres-down.md"

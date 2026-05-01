@@ -2,7 +2,7 @@
 
 ## Host Baseline
 
-Target host: Ubuntu 24.04.4 LTS local homelab machine with Docker Engine, Docker Compose plugin, and k6.
+Target host: Ubuntu 24.04.4 LTS on a local homelab machine with Docker Engine, Docker Compose plugin, Python, Git, jq, Make, and k6.
 
 ## Local Repository
 
@@ -11,29 +11,6 @@ Expected location:
 ```bash
 ~/projects/signalcart-observability-lab
 ```
-
-Remote:
-
-```text
-git@github.com-signalcart:angelsediez/signalcart-observability-lab.git
-```
-
-## Required Host Tools
-
-- git
-- curl
-- jq
-- make
-- tree
-- python3
-- pip3
-- Docker Engine
-- Docker Compose plugin
-- k6
-
-## Environment Variables
-
-Use `.env.example` as the template for local configuration. Simulation endpoints are disabled by default with `SIMULATION_MODE=false`.
 
 ## Running SignalCart API Locally
 
@@ -62,24 +39,15 @@ alembic upgrade head
 docker compose exec -T postgres psql -U signalcart -d signalcart -c "\dt"
 ```
 
-## Metrics Validation
-
-```bash
-curl -s http://127.0.0.1:8000/metrics | grep '^signalcart_'
-curl -s http://127.0.0.1:8000/metrics | grep '^signalcart_database_ready'
-bash scripts/smoke-test.sh
-```
-
 ## Running with Docker Compose and Nginx
 
 ```bash
 docker compose build api
 docker compose up -d postgres api nginx
 docker compose exec -T api alembic upgrade head
-docker compose ps
 ```
 
-Validate Nginx entrypoint:
+Validate the Nginx entrypoint:
 
 ```bash
 curl -s http://127.0.0.1:8080/health/live | jq .
@@ -91,37 +59,25 @@ BASE_URL=http://127.0.0.1:8080 bash scripts/compose-smoke-test.sh
 
 ## Prometheus and Exporters
 
-Start the metrics collection layer:
-
 ```bash
-docker compose up -d \
-  postgres \
-  api \
-  nginx \
-  node-exporter \
-  cadvisor \
-  postgres-exporter \
-  blackbox-exporter \
-  prometheus
+docker compose up -d   postgres api nginx node-exporter cadvisor postgres-exporter blackbox-exporter prometheus
 ```
 
-Validate Prometheus configuration:
+Validate Prometheus:
 
 ```bash
-docker compose run --rm --no-deps prometheus promtool check config /etc/prometheus/prometheus.yml
-```
-
-Open Prometheus: `http://127.0.0.1:9090`
-
-Open target status: `http://127.0.0.1:9090/targets`
-
-Check targets from the command line:
-
-```bash
+docker compose run --rm --no-deps prometheus   promtool check config /etc/prometheus/prometheus.yml
 bash scripts/check-prometheus-targets.sh
 ```
 
-Query key metrics:
+Open:
+
+```text
+http://127.0.0.1:9090
+http://127.0.0.1:9090/targets
+```
+
+Useful queries:
 
 ```bash
 curl -G -s http://127.0.0.1:9090/api/v1/query --data-urlencode 'query=up' | jq .
@@ -132,49 +88,64 @@ curl -G -s http://127.0.0.1:9090/api/v1/query --data-urlencode 'query=probe_succ
 
 ## Grafana Dashboards
 
-Start Grafana with the runtime:
-
 ```bash
-docker compose up -d \
-  postgres \
-  api \
-  nginx \
-  node-exporter \
-  cadvisor \
-  postgres-exporter \
-  blackbox-exporter \
-  prometheus \
-  grafana
+docker compose up -d   postgres api nginx node-exporter cadvisor postgres-exporter blackbox-exporter prometheus grafana
 ```
 
-Open Grafana: `http://127.0.0.1:3000`
+Open Grafana:
 
-Default local credentials: `admin / admin`
+```text
+http://127.0.0.1:3000
+```
 
-Validate Grafana provisioning:
+Default local credentials:
+
+```text
+admin / admin
+```
+
+Validate:
 
 ```bash
 bash scripts/check-grafana-provisioning.sh
-curl -s -u admin:admin http://127.0.0.1:3000/api/datasources/name/Prometheus | jq .
 curl -s -u admin:admin 'http://127.0.0.1:3000/api/search?query=SignalCart' | jq .
 ```
 
-Recommended dashboard URLs:
+## Alertmanager and Alert Rules
+
+```bash
+docker compose up -d   postgres api nginx node-exporter cadvisor postgres-exporter blackbox-exporter alertmanager prometheus grafana
+```
+
+Validate Prometheus alert rules:
+
+```bash
+docker compose run --rm --no-deps --entrypoint promtool prometheus   check rules   /etc/prometheus/rules/api-alerts.yml   /etc/prometheus/rules/postgres-alerts.yml   /etc/prometheus/rules/infrastructure-alerts.yml   /etc/prometheus/rules/synthetic-alerts.yml
+```
+
+Validate Alertmanager configuration:
+
+```bash
+docker compose run --rm --no-deps --entrypoint amtool alertmanager   check-config /etc/alertmanager/alertmanager.yml
+```
+
+Open:
 
 ```text
-http://127.0.0.1:3000/d/signalcart-overview
-http://127.0.0.1:3000/d/signalcart-api-red
-http://127.0.0.1:3000/d/signalcart-infrastructure-use
-http://127.0.0.1:3000/d/signalcart-postgres
-http://127.0.0.1:3000/d/signalcart-synthetic-checks
+http://127.0.0.1:9090/alerts
+http://127.0.0.1:9093
+```
+
+Check alerts:
+
+```bash
+bash scripts/check-prometheus-alerts.sh
+bash scripts/check-alertmanager.sh
 ```
 
 ## Evidence Locations
 
-Text evidence: `validation/`
-
-Screenshots: `assets/screenshots/`
-
-Runbooks: `runbooks/`
-
-Troubleshooting notes: `troubleshooting/`
+- Text evidence: `validation/`
+- Screenshots: `assets/screenshots/`
+- Runbooks: `runbooks/`
+- Troubleshooting notes: `troubleshooting/`

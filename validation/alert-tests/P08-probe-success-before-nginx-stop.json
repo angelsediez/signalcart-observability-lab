@@ -1,0 +1,20 @@
+{
+  "status": "success",
+  "data": {
+    "resultType": "vector",
+    "result": [
+      {
+        "metric": {
+          "__name__": "probe_success",
+          "instance": "http://nginx/health/ready",
+          "job": "blackbox-nginx",
+          "service": "nginx-synthetic-check"
+        },
+        "value": [
+          1777615984.332,
+          "1"
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+Attempt 1/90: NginxEndpointDown firing_count=1
+Attempt 2/90: NginxEndpointDown firing_count=1
+Attempt 3/90: NginxEndpointDown firing_count=1
+Attempt 4/90: NginxEndpointDown firing_count=1
+Attempt 5/90: NginxEndpointDown firing_count=1
+Attempt 6/90: NginxEndpointDown firing_count=1
+Attempt 7/90: NginxEndpointDown firing_count=0

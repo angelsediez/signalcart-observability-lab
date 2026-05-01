@@ -1,0 +1,311 @@
+{
+  "status": "success",
+  "data": {
+    "groups": [
+      {
+        "name": "signalcart-api-alerts",
+        "file": "/etc/prometheus/rules/api-alerts.yml",
+        "rules": [
+          {
+            "state": "inactive",
+            "name": "APIScrapeDown",
+            "query": "up{job=\"signalcart-api\"} == 0",
+            "duration": 60,
+            "keepFiringFor": 0,
+            "labels": {
+              "category": "availability",
+              "service": "signalcart-api",
+              "severity": "critical"
+            },
+            "annotations": {
+              "description": "Prometheus cannot scrape SignalCart API metrics for more than 1 minute. Instance={{ $labels.instance }}.",
+              "runbook_url": "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/api-scrape-down.md",
+              "summary": "SignalCart API scrape target is down"
+            },
+            "alerts": [],
+            "health": "ok",
+            "evaluationTime": 0.000172489,
+            "lastEvaluation": "2026-05-01T06:12:50.805068122Z",
+            "type": "alerting"
+          },
+          {
+            "state": "inactive",
+            "name": "APIHighErrorRate",
+            "query": "100 * sum(rate(signalcart_http_requests_total{status_code=~\"5..\"}[5m])) / clamp_min(sum(rate(signalcart_http_requests_total[5m])), 0.001) > 5",
+            "duration": 120,
+            "keepFiringFor": 0,
+            "labels": {
+              "category": "errors",
+              "service": "signalcart-api",
+              "severity": "warning"
+            },
+            "annotations": {
+              "description": "SignalCart API 5xx error percentage is above 5% for more than 2 minutes.",
+              "runbook_url": "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/api-high-error-rate.md",
+              "summary": "SignalCart API high 5xx error rate"
+            },
+            "alerts": [],
+            "health": "ok",
+            "evaluationTime": 0.006169476,
+            "lastEvaluation": "2026-05-01T06:12:50.805245902Z",
+            "type": "alerting"
+          },
+          {
+            "state": "inactive",
+            "name": "APIHighLatencyP95",
+            "query": "histogram_quantile(0.95, sum by (le) (rate(signalcart_http_request_duration_seconds_bucket[5m]))) > 1",
+            "duration": 120,
+            "keepFiringFor": 0,
+            "labels": {
+              "category": "latency",
+              "service": "signalcart-api",
+              "severity": "warning"
+            },
+            "annotations": {
+              "description": "SignalCart API p95 latency is above 1 second for more than 2 minutes.",
+              "runbook_url": "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/api-high-latency.md",
+              "summary": "SignalCart API p95 latency is high"
+            },
+            "alerts": [],
+            "health": "ok",
+            "evaluationTime": 0.000473079,
+            "lastEvaluation": "2026-05-01T06:12:50.811422548Z",
+            "type": "alerting"
+          },
+          {
+            "state": "inactive",
+            "name": "DatabaseReadinessFailing",
+            "query": "signalcart_database_ready == 0",
+            "duration": 60,
+            "keepFiringFor": 0,
+            "labels": {
+              "category": "readiness",
+              "service": "signalcart-api",
+              "severity": "critical"
+            },
+            "annotations": {
+              "description": "SignalCart API reports database readiness as failed for more than 1 minute.",
+              "runbook_url": "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/database-readiness-failing.md",
+              "summary": "SignalCart API database readiness is failing"
+            },
+            "alerts": [],
+            "health": "ok",
+            "evaluationTime": 0.00007825,
+            "lastEvaluation": "2026-05-01T06:12:50.811902537Z",
+            "type": "alerting"
+          }
+        ],
+        "interval": 15,
+        "limit": 0,
+        "evaluationTime": 0.006940775,
+        "lastEvaluation": "2026-05-01T06:12:50.805042312Z"
+      },
+      {
+        "name": "signalcart-infrastructure-alerts",
+        "file": "/etc/prometheus/rules/infrastructure-alerts.yml",
+        "rules": [
+          {
+            "state": "inactive",
+            "name": "HostHighCPU",
+            "query": "100 * (1 - avg by (instance) (rate(node_cpu_seconds_total{mode=\"idle\"}[5m]))) > 85",
+            "duration": 300,
+            "keepFiringFor": 0,
+            "labels": {
+              "category": "saturation",
+              "service": "host",
+              "severity": "warning"
+            },
+            "annotations": {
+              "description": "Host CPU utilization is above 85% for more than 5 minutes. Instance={{ $labels.instance }}.",
+              "runbook_url": "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/host-saturation.md",
+              "summary": "Host CPU utilization is high"
+            },
+            "alerts": [],
+            "health": "ok",
+            "evaluationTime": 0.000371829,
+            "lastEvaluation": "2026-05-01T06:12:40.406857903Z",
+            "type": "alerting"
+          },
+          {
+            "state": "inactive",
+            "name": "HostLowMemory",
+            "query": "100 * node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes < 10",
+            "duration": 300,
+            "keepFiringFor": 0,
+            "labels": {
+              "category": "saturation",
+              "service": "host",
+              "severity": "warning"
+            },
+            "annotations": {
+              "description": "Host available memory is below 10% for more than 5 minutes. Instance={{ $labels.instance }}.",
+              "runbook_url": "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/host-saturation.md",
+              "summary": "Host available memory is low"
+            },
+            "alerts": [],
+            "health": "ok",
+            "evaluationTime": 0.00012853,
+            "lastEvaluation": "2026-05-01T06:12:40.407235782Z",
+            "type": "alerting"
+          },
+          {
+            "state": "inactive",
+            "name": "ContainerRestarting",
+            "query": "sum by (name) (changes(container_start_time_seconds{name!=\"\"}[10m])) > 0",
+            "duration": 60,
+            "keepFiringFor": 0,
+            "labels": {
+              "category": "stability",
+              "service": "containers",
+              "severity": "warning"
+            },
+            "annotations": {
+              "description": "Container {{ $labels.name }} restarted within the last 10 minutes.",
+              "runbook_url": "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/container-restarting.md",
+              "summary": "Container restart detected"
+            },
+            "alerts": [],
+            "health": "ok",
+            "evaluationTime": 0.000160549,
+            "lastEvaluation": "2026-05-01T06:12:40.407368842Z",
+            "type": "alerting"
+          }
+        ],
+        "interval": 15,
+        "limit": 0,
+        "evaluationTime": 0.000700169,
+        "lastEvaluation": "2026-05-01T06:12:40.406831873Z"
+      },
+      {
+        "name": "signalcart-postgres-alerts",
+        "file": "/etc/prometheus/rules/postgres-alerts.yml",
+        "rules": [
+          {
+            "state": "inactive",
+            "name": "PostgresExporterDown",
+            "query": "up{job=\"postgres-exporter\"} == 0",
+            "duration": 60,
+            "keepFiringFor": 0,
+            "labels": {
+              "category": "availability",
+              "service": "postgres",
+              "severity": "critical"
+            },
+            "annotations": {
+              "description": "Prometheus cannot scrape PostgreSQL Exporter for more than 1 minute. Instance={{ $labels.instance }}.",
+              "runbook_url": "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/postgres-down.md",
+              "summary": "PostgreSQL exporter is down"
+            },
+            "alerts": [],
+            "health": "ok",
+            "evaluationTime": 0.00014832,
+            "lastEvaluation": "2026-05-01T06:12:46.2175769Z",
+            "type": "alerting"
+          },
+          {
+            "state": "inactive",
+            "name": "PostgresDown",
+            "query": "pg_up == 0",
+            "duration": 60,
+            "keepFiringFor": 0,
+            "labels": {
+              "category": "availability",
+              "service": "postgres",
+              "severity": "critical"
+            },
+            "annotations": {
+              "description": "PostgreSQL Exporter reports pg_up=0 for more than 1 minute.",
+              "runbook_url": "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/postgres-down.md",
+              "summary": "PostgreSQL is down or unreachable"
+            },
+            "alerts": [],
+            "health": "ok",
+            "evaluationTime": 0.00007342,
+            "lastEvaluation": "2026-05-01T06:12:46.217732099Z",
+            "type": "alerting"
+          },
+          {
+            "state": "inactive",
+            "name": "PostgresTooManyConnections",
+            "query": "pg_stat_database_numbackends{datname=\"signalcart\"} > 20",
+            "duration": 300,
+            "keepFiringFor": 0,
+            "labels": {
+              "category": "saturation",
+              "service": "postgres",
+              "severity": "warning"
+            },
+            "annotations": {
+              "description": "PostgreSQL database signalcart has more than 20 active connections for more than 5 minutes.",
+              "runbook_url": "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/postgres-down.md",
+              "summary": "PostgreSQL has many active connections"
+            },
+            "alerts": [],
+            "health": "ok",
+            "evaluationTime": 0.00005535,
+            "lastEvaluation": "2026-05-01T06:12:46.217808429Z",
+            "type": "alerting"
+          }
+        ],
+        "interval": 15,
+        "limit": 0,
+        "evaluationTime": 0.000312019,
+        "lastEvaluation": "2026-05-01T06:12:46.2175538Z"
+      },
+      {
+        "name": "signalcart-synthetic-alerts",
+        "file": "/etc/prometheus/rules/synthetic-alerts.yml",
+        "rules": [
+          {
+            "state": "inactive",
+            "name": "NginxEndpointDown",
+            "query": "probe_success{job=\"blackbox-nginx\"} == 0",
+            "duration": 60,
+            "keepFiringFor": 0,
+            "labels": {
+              "category": "synthetic",
+              "service": "nginx",
+              "severity": "critical"
+            },
+            "annotations": {
+              "description": "Blackbox Exporter cannot successfully probe the Nginx readiness endpoint for more than 1 minute. Target={{ $labels.instance }}.",
+              "runbook_url": "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/nginx-down.md",
+              "summary": "Nginx readiness endpoint synthetic check is failing"
+            },
+            "alerts": [],
+            "health": "ok",
+            "evaluationTime": 0.00019585,
+            "lastEvaluation": "2026-05-01T06:12:41.092582829Z",
+            "type": "alerting"
+          },
+          {
+            "state": "inactive",
+            "name": "NginxHighProbeDuration",
+            "query": "probe_duration_seconds{job=\"blackbox-nginx\"} > 1",
+            "duration": 120,
+            "keepFiringFor": 0,
+            "labels": {
+              "category": "latency",
+              "service": "nginx",
+              "severity": "warning"
+            },
+            "annotations": {
+              "description": "Blackbox probe duration for Nginx readiness is above 1 second for more than 2 minutes. Target={{ $labels.instance }}.",
+              "runbook_url": "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/nginx-down.md",
+              "summary": "Nginx synthetic probe duration is high"
+            },
+            "alerts": [],
+            "health": "ok",
+            "evaluationTime": 0.00012074,
+            "lastEvaluation": "2026-05-01T06:12:41.092784579Z",
+            "type": "alerting"
+          }
+        ],
+        "interval": 15,
+        "limit": 0,
+        "evaluationTime": 0.00035106,
+        "lastEvaluation": "2026-05-01T06:12:41.092556859Z"
+      }
+    ]
+  }
+}

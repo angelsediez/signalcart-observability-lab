@@ -1,0 +1,33 @@
+[
+  {
+    "annotations": {
+      "description": "Blackbox Exporter cannot successfully probe the Nginx readiness endpoint for more than 1 minute. Target=http://nginx/health/ready.",
+      "runbook_url": "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/nginx-down.md",
+      "summary": "Nginx readiness endpoint synthetic check is failing"
+    },
+    "endsAt": "2026-05-01T06:56:26.092Z",
+    "fingerprint": "db3b8c096f986f23",
+    "receivers": [
+      {
+        "name": "local-alertmanager-ui"
+      }
+    ],
+    "startsAt": "2026-05-01T06:52:26.092Z",
+    "status": {
+      "inhibitedBy": [],
+      "mutedBy": [],
+      "silencedBy": [],
+      "state": "active"
+    },
+    "updatedAt": "2026-05-01T06:52:26.094Z",
+    "generatorURL": "http://3c43de729abc:9090/graph?g0.expr=probe_success%7Bjob%3D%22blackbox-nginx%22%7D+%3D%3D+0&g0.tab=1",
+    "labels": {
+      "alertname": "NginxEndpointDown",
+      "category": "synthetic",
+      "instance": "http://nginx/health/ready",
+      "job": "blackbox-nginx",
+      "service": "nginx",
+      "severity": "critical"
+    }
+  }
+]

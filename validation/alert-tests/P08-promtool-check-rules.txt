@@ -1,0 +1,13 @@
+ Container signalcart-observability-lab-prometheus-run-c7745ceda624 Creating
+ Container signalcart-observability-lab-prometheus-run-c7745ceda624 Created
+Checking /etc/prometheus/rules/api-alerts.yml
+  SUCCESS: 4 rules found
+
+Checking /etc/prometheus/rules/postgres-alerts.yml
+  SUCCESS: 3 rules found
+
+Checking /etc/prometheus/rules/infrastructure-alerts.yml
+  SUCCESS: 3 rules found
+
+Checking /etc/prometheus/rules/synthetic-alerts.yml
+  SUCCESS: 2 rules found
