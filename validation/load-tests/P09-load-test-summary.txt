@@ -1,0 +1,33 @@
+== SignalCart Phase 09 Load Test Summary ==
+
+## k6 smoke summary extract
+{
+  "checks_rate": 1,
+  "http_req_failed_rate": 0,
+  "http_req_duration_p95": 12.970371099999998
+}
+
+## k6 baseline summary extract
+{
+  "checks_rate": 1,
+  "http_req_failed_rate": 0,
+  "http_req_duration_p95": 13.146831549999996
+}
+
+## Prometheus request rate after load
+18.29384009356725
+
+## Prometheus p95 latency after load
+0.017314497048101767
+
+## Prometheus error percentage after load
+0
+
+## Checkouts completed during load window
+882.0793504273504
+
+## Alert stability
+== Firing alerts after normal load ==
+
+== Count ==
+0

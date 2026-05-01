@@ -1,4 +1,4 @@
-.PHONY: help test db-up db-down db-ps migrate smoke compose-build compose-up compose-down compose-ps compose-logs compose-smoke
+.PHONY: load-smoke load-baseline load-stress load-evidence  help test db-up db-down db-ps migrate smoke compose-build compose-up compose-down compose-ps compose-logs compose-smoke
 
 help:
 	@echo "SignalCart Observability Lab"
@@ -59,3 +59,16 @@ grafana-up:
 
 grafana-check:
 	bash scripts/check-grafana-provisioning.sh
+
+
+load-smoke:
+	BASE_URL=http://127.0.0.1:8080 k6 run --summary-export validation/load-tests/P09-k6-smoke-summary.json load-tests/smoke.js
+
+load-baseline:
+	BASE_URL=http://127.0.0.1:8080 k6 run --summary-export validation/load-tests/P09-k6-baseline-summary.json load-tests/baseline.js
+
+load-stress:
+	BASE_URL=http://127.0.0.1:8080 k6 run --summary-export validation/load-tests/P09-k6-stress-summary.json load-tests/stress.js
+
+load-evidence:
+	bash scripts/check-load-test-evidence.sh
