@@ -1,0 +1,61 @@
+#1 [internal] load local bake definitions
+#1 reading from stdin 587B done
+#1 DONE 0.0s
+
+#2 [internal] load build definition from Dockerfile
+#2 transferring dockerfile: 638B done
+#2 DONE 0.0s
+
+#3 [internal] load metadata for docker.io/library/python:3.12-slim
+#3 DONE 0.8s
+
+#4 [internal] load .dockerignore
+#4 transferring context: 2B done
+#4 DONE 0.0s
+
+#5 [1/9] FROM docker.io/library/python:3.12-slim@sha256:46cb7cc2877e60fbd5e21a9ae6115c30ace7a077b9f8772da879e4590c18c2e3
+#5 resolve docker.io/library/python:3.12-slim@sha256:46cb7cc2877e60fbd5e21a9ae6115c30ace7a077b9f8772da879e4590c18c2e3 0.0s done
+#5 DONE 0.0s
+
+#6 [internal] load build context
+#6 transferring context: 7.91kB done
+#6 DONE 0.0s
+
+#7 [2/9] WORKDIR /app
+#7 CACHED
+
+#8 [3/9] RUN addgroup --system signalcart     && adduser --system --ingroup signalcart signalcart
+#8 CACHED
+
+#9 [4/9] COPY requirements.txt /app/requirements.txt
+#9 CACHED
+
+#10 [5/9] RUN python -m pip install --no-cache-dir --upgrade pip     && python -m pip install --no-cache-dir -r /app/requirements.txt
+#10 CACHED
+
+#11 [6/9] COPY app /app/app
+#11 DONE 0.1s
+
+#12 [7/9] COPY migrations /app/migrations
+#12 DONE 0.1s
+
+#13 [8/9] COPY alembic.ini /app/alembic.ini
+#13 DONE 0.1s
+
+#14 [9/9] RUN chown -R signalcart:signalcart /app
+#14 DONE 0.7s
+
+#15 exporting to image
+#15 exporting layers
+#15 exporting layers 0.4s done
+#15 exporting manifest sha256:0e3175db47df22efdf5b6febce47e2e7bf329b099ac6f6d68ad143b757a47d49 0.0s done
+#15 exporting config sha256:567dbf89790a5cde398c7155cc05d1501fedaf6658d369433f7af85f512ba77a 0.0s done
+#15 exporting attestation manifest sha256:ce85638944058c1b23a2fd9d4714e9bce2d92c5ecb0bd02fb97065a9937164b0 0.1s done
+#15 exporting manifest list sha256:b26c90ba9222bf2d06d8d66d279009a3a3dc4c9a931b0e13f826b7982205e375
+#15 exporting manifest list sha256:b26c90ba9222bf2d06d8d66d279009a3a3dc4c9a931b0e13f826b7982205e375 0.0s done
+#15 naming to docker.io/library/signalcart-api:local done
+#15 unpacking to docker.io/library/signalcart-api:local 0.1s done
+#15 DONE 0.7s
+
+#16 resolving provenance for metadata file
+#16 DONE 0.0s

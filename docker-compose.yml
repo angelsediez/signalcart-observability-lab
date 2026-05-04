@@ -29,8 +29,10 @@ services:
       APP_VERSION: 0.1.0
       APP_ENV: local
       DATABASE_URL: postgresql+psycopg://signalcart:signalcart-local-password@postgres:5432/signalcart
-      SIMULATION_MODE: "false"
-      SIMULATION_TOKEN: change-me-for-local-lab-only
+      SIMULATION_MODE: "${SIMULATION_MODE:-true}"
+      SIMULATION_TOKEN: "${SIMULATION_TOKEN:-local-simulation-token}"
+      SIMULATION_LATENCY_SECONDS: "${SIMULATION_LATENCY_SECONDS:-1.25}"
+      SIMULATION_ERROR_STATUS_CODE: "${SIMULATION_ERROR_STATUS_CODE:-500}"
     depends_on:
       postgres:
         condition: service_healthy

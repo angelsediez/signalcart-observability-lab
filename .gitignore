@@ -39,7 +39,6 @@ grafana-data/
 prometheus-data/
 alertmanager-data/
 
-# PDFs are local study sources and must not be committed.
 
 # k6 output
 *.summary.json

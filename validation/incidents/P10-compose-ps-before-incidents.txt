@@ -1,0 +1,11 @@
+NAME                           IMAGE                                           COMMAND                  SERVICE             CREATED          STATUS                             PORTS
+signalcart-alertmanager        prom/alertmanager:v0.32.0                       "/bin/alertmanager -…"   alertmanager        2 days ago       Up 27 seconds (healthy)            127.0.0.1:9093->9093/tcp
+signalcart-api                 signalcart-api:local                            "python3 -m uvicorn …"   api                 28 seconds ago   Up 21 seconds (healthy)            8000/tcp
+signalcart-blackbox-exporter   prom/blackbox-exporter:v0.27.0                  "/bin/blackbox_expor…"   blackbox-exporter   3 days ago       Up 27 seconds                      9115/tcp
+signalcart-cadvisor            gcr.io/cadvisor/cadvisor:v0.52.1                "/usr/bin/cadvisor -…"   cadvisor            3 days ago       Up 27 seconds (health: starting)   8080/tcp
+signalcart-grafana             grafana/grafana:13.0.1                          "/run.sh"                grafana             3 days ago       Up Less than a second              127.0.0.1:3000->3000/tcp
+signalcart-nginx               nginx:1.27-alpine                               "/docker-entrypoint.…"   nginx               3 days ago       Up 11 seconds (healthy)            127.0.0.1:8080->80/tcp
+signalcart-node-exporter       prom/node-exporter:v1.11.0                      "/bin/node_exporter …"   node-exporter       3 days ago       Up 27 seconds                      9100/tcp
+signalcart-postgres            postgres:17-alpine                              "docker-entrypoint.s…"   postgres            3 days ago       Up 27 seconds (healthy)            127.0.0.1:5432->5432/tcp
+signalcart-postgres-exporter   prometheuscommunity/postgres-exporter:v0.18.0   "/bin/postgres_expor…"   postgres-exporter   3 days ago       Up 21 seconds                      9187/tcp
+signalcart-prometheus          prom/prometheus:v3.5.2                          "/bin/prometheus --c…"   prometheus          2 days ago       Up Less than a second              127.0.0.1:9090->9090/tcp

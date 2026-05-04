@@ -1,0 +1,8 @@
+{
+  "status": "enabled",
+  "simulation_state": {
+    "latency_spike": true,
+    "error_spike": false,
+    "db_readiness_failure": false
+  }
+}

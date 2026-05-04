@@ -272,6 +272,35 @@ Load profiles:
 
 The normal validation path uses smoke and baseline load.
 
+## Incident Validation Workflow
+
+Controlled incident simulations validate the full observability workflow.
+
+The incident validation cycle is:
+
+1. capture healthy baseline
+2. trigger controlled condition
+3. generate relevant traffic or health checks
+4. capture Prometheus query evidence
+5. inspect Grafana dashboard behavior
+6. inspect alert state when applicable
+7. run recovery
+8. validate metrics and health return to expected values
+
+Validated incident types:
+
+- API latency spike
+- API error spike
+- database readiness failure
+
+Incident evidence is stored under:
+
+```text
+validation/incidents/
+```
+
+Phase 10 evidence includes before, during, and after recovery records for each simulated incident.
+
 ## API RED Dashboard Model
 
 RED means:

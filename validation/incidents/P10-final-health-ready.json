@@ -1,0 +1,7 @@
+{
+  "status": "ready",
+  "service": "SignalCart API",
+  "dependencies": {
+    "database": "ok"
+  }
+}

@@ -474,6 +474,58 @@ Open the API RED dashboard:
 http://127.0.0.1:3000/d/signalcart-api-red
 ```
 
+## Incident Simulation Validation
+
+The Docker Compose runtime enables controlled local incident simulations with a local token.
+
+Run the full incident validation workflow:
+
+```bash
+BASE_URL=http://127.0.0.1:8080 \
+PROMETHEUS_URL=http://127.0.0.1:9090 \
+SIMULATION_TOKEN=local-simulation-token \
+bash scripts/run-incident-simulation.sh
+```
+
+Trigger latency simulation manually:
+
+```bash
+curl -s -X POST http://127.0.0.1:8080/lab/simulations/latency-spike \
+  -H "X-Simulation-Token: local-simulation-token" | jq .
+```
+
+Trigger error simulation manually:
+
+```bash
+curl -s -X POST http://127.0.0.1:8080/lab/simulations/error-spike \
+  -H "X-Simulation-Token: local-simulation-token" | jq .
+```
+
+Trigger database readiness simulation manually:
+
+```bash
+curl -s -X POST http://127.0.0.1:8080/lab/simulations/db-readiness-failure \
+  -H "X-Simulation-Token: local-simulation-token" | jq .
+```
+
+Recover from active simulations:
+
+```bash
+curl -s -X POST http://127.0.0.1:8080/lab/simulations/recover \
+  -H "X-Simulation-Token: local-simulation-token" | jq .
+```
+
+Validate recovery:
+
+```bash
+curl -s http://127.0.0.1:8080/health/ready | jq .
+
+curl -G -s http://127.0.0.1:9090/api/v1/query \
+  --data-urlencode 'query=signalcart_database_ready' | jq .
+
+curl -s http://127.0.0.1:9090/api/v1/alerts | jq .
+```
+
 ## Evidence Locations
 
 Text evidence:

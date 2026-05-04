@@ -263,3 +263,28 @@ Status: accepted
 Reason:
 
 A successful load test should increase request and checkout metrics while keeping error rate acceptable and alerts stable.
+
+
+## Decision 030: Validate observability with controlled incident simulations
+
+Status: accepted
+
+Reason:
+
+Controlled incidents prove that metrics, dashboards, alerts, and runbooks can be used together during realistic operational conditions.
+
+## Decision 031: Capture before, during, and after recovery evidence
+
+Status: accepted
+
+Reason:
+
+Incident evidence is more useful when it shows the complete operational timeline instead of only the failure state.
+
+## Decision 032: Keep incident simulation local and token-protected
+
+Status: accepted
+
+Reason:
+
+Simulation endpoints are intended for lab validation and require explicit runtime configuration plus a local token.

@@ -1,0 +1,30 @@
+== Incident validation summary ==
+
+Latency evidence:
+before_p95=0.028148333333333275
+during_p95=2.2294582030970433
+after_p95=1.8704042980458289
+
+Error evidence:
+before_error_percent=no result
+during_error_percent=23.66277351625039
+after_error_percent=0
+
+Database readiness evidence:
+before_db_ready=1
+during_db_ready=0
+after_db_ready=1
+
+Final health:
+{
+  "status": "ready",
+  "service": "SignalCart API",
+  "dependencies": {
+    "database": "ok"
+  }
+}
+
+Final firing alerts:
+
+Final firing alert count:
+0

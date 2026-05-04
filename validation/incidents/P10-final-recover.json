@@ -1,0 +1,8 @@
+{
+  "status": "recovered",
+  "simulation_state": {
+    "latency_spike": false,
+    "error_spike": false,
+    "db_readiness_failure": false
+  }
+}

@@ -1,0 +1,41 @@
+{
+  "status": "success",
+  "data": {
+    "alerts": [
+      {
+        "labels": {
+          "alertname": "APIHighErrorRate",
+          "category": "errors",
+          "service": "signalcart-api",
+          "severity": "warning"
+        },
+        "annotations": {
+          "description": "SignalCart API 5xx error percentage is above 5% for more than 2 minutes.",
+          "runbook_url": "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/api-high-error-rate.md",
+          "summary": "SignalCart API high 5xx error rate"
+        },
+        "state": "firing",
+        "activeAt": "2026-05-03T22:09:20.802449018Z",
+        "value": "1.929025579102661e+01"
+      },
+      {
+        "labels": {
+          "alertname": "DatabaseReadinessFailing",
+          "category": "readiness",
+          "instance": "api:8000",
+          "job": "signalcart-api",
+          "service": "signalcart-api",
+          "severity": "critical"
+        },
+        "annotations": {
+          "description": "SignalCart API reports database readiness as failed for more than 1 minute.",
+          "runbook_url": "https://github.com/angelsediez/signalcart-observability-lab/blob/main/runbooks/database-readiness-failing.md",
+          "summary": "SignalCart API database readiness is failing"
+        },
+        "state": "pending",
+        "activeAt": "2026-05-03T22:11:35.802449018Z",
+        "value": "0e+00"
+      }
+    ]
+  }
+}

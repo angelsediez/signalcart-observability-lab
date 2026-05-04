@@ -2,7 +2,7 @@
 
 SignalCart Observability Lab is a local-first observability homelab for practicing practical SRE operations with a small FastAPI checkout/cart service.
 
-The lab demonstrates how to instrument, monitor, visualize, validate alerts, generate controlled load, troubleshoot, and recover a service using a metrics-driven observability workflow.
+The lab demonstrates how to instrument, monitor, visualize, validate alerts, generate controlled load, simulate incidents, troubleshoot, and recover a service using a metrics-driven observability workflow.
 
 ## What This Lab Demonstrates
 
@@ -17,6 +17,7 @@ The lab demonstrates how to instrument, monitor, visualize, validate alerts, gen
 - Grafana dashboard provisioning
 - Alertmanager alert validation
 - k6 load testing evidence
+- Controlled incident simulation evidence
 - Nginx reverse proxy validation
 - Docker Compose runtime validation
 - Host metrics with Node Exporter
@@ -198,20 +199,25 @@ The lab validates observability through controlled incident scenarios:
 
 1. API latency spike
 2. API error rate spike
-3. PostgreSQL readiness failure
-4. Nginx endpoint failure
-5. Load test behavior under k6
+3. Database readiness failure
 
 Each incident follows an evidence-driven workflow:
 
-1. Hypothesis
-2. Experiment
-3. Metric observed
-4. Alert expected
-5. Evidence captured
-6. Diagnosis
-7. Recovery
-8. Lesson learned
+1. Healthy baseline
+2. Controlled condition
+3. Signal observed
+4. Metrics and dashboard evidence
+5. Alert state validation when applicable
+6. Recovery action
+7. Post-recovery validation
+8. Evidence summary
+
+Incident evidence is stored under:
+
+```text
+validation/incidents/
+assets/screenshots/phase-10/
+```
 
 ## Evidence and Runbooks
 
@@ -263,6 +269,11 @@ signalcart-observability-lab/
 - Phase 07: Grafana dashboards — completed
 - Phase 08: Alertmanager and alert rules — completed
 - Phase 09: k6 load testing and performance evidence — completed
+- Phase 10: Incident simulations and recovery validation — completed
+
+## Project Status
+
+Project status: completed.
 
 ## License
 

@@ -1,9 +1,10 @@
 from fastapi import FastAPI
 
 from app.core.config import get_settings
-from app.routers import checkout, health, metrics, orders, products, simulations, version
+from app.observability.incident_middleware import IncidentSimulationMiddleware
 from app.observability.metrics import initialize_metrics, set_simulation_state
 from app.observability.middleware import MetricsMiddleware
+from app.routers import checkout, health, metrics, orders, products, simulations, version
 
 
 def create_app() -> FastAPI:
@@ -25,6 +26,7 @@ def create_app() -> FastAPI:
 
     set_simulation_state(app.state.simulation_state)
 
+    app.add_middleware(IncidentSimulationMiddleware)
     app.add_middleware(MetricsMiddleware)
 
     app.include_router(health.router)

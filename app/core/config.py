@@ -15,10 +15,30 @@ class Settings:
         )
         self.simulation_mode = self._as_bool(os.getenv("SIMULATION_MODE", "false"))
         self.simulation_token = os.getenv("SIMULATION_TOKEN", "change-me-for-local-lab-only")
+        self.simulation_latency_seconds = self._as_float(
+            os.getenv("SIMULATION_LATENCY_SECONDS", "1.25")
+        )
+        self.simulation_error_status_code = self._as_int(
+            os.getenv("SIMULATION_ERROR_STATUS_CODE", "500")
+        )
 
     @staticmethod
     def _as_bool(value: str) -> bool:
         return value.strip().lower() in {"1", "true", "yes", "on"}
+
+    @staticmethod
+    def _as_float(value: str) -> float:
+        try:
+            return float(value)
+        except ValueError:
+            return 1.25
+
+    @staticmethod
+    def _as_int(value: str) -> int:
+        try:
+            return int(value)
+        except ValueError:
+            return 500
 
 
 @lru_cache

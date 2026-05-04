@@ -1,0 +1,9 @@
+{
+  "detail": {
+    "status": "not_ready",
+    "service": "SignalCart API",
+    "dependencies": {
+      "database": "simulated_failure"
+    }
+  }
+}
